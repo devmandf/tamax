@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ITAMAX</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body class="page-index"> <!-- Added class page-index -->
+  <!-- Vidéo d'arrière-plan supprimée -->
+  <header class="header">
+    <div class="hamburger-menu">
+      <img src="boutons/HamburMenu.svg" alt="Menu" class="hamburger-icon default-icon">
+      <img src="boutons/HamburMenuHover.svg" alt="Menu" class="hamburger-icon hover-icon">
+    </div>
+    <button class="close-menu" aria-label="Fermer le menu" style="display:none">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <nav class="dropdown-menu">
+      <ul>
+        <li class="active">
+          <a href="#" class="menu-item active">
+            Accueil
+          </a>
+        </li>
+        <li class="has-submenu">
+          <a href="#" class="menu-item">
+            Projets
+            <i class="fas fa-chevron-down arrow-icon"></i>
+          </a>
+          <ul class="submenu">
+            <li><a href="amo.html">Assistance à Maîtrise d'Ouvrage Déléguée (AMO)</a></li>
+            <li><a href="appins.html">Appuis institutionnels</a></li>
+            <li><a href="peat.html">Projets Études Architecturales et Techniques</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="gsap.html" class="menu-item">
+            Carrousel
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="menu-item">
+            Contact
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="logo-link" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <img src="boutons/itamaxTextHeader.svg" alt="ITAMAX" class="logo-text">
+    </div>
+    <div class="logo-container" onmouseover="this.querySelector('img').src='boutons/logo-itamaxHover.svg'" onmouseout="this.querySelector('img').src='boutons/logo-itamax.svg'" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <img src="boutons/logo-itamax.svg" alt="Logo ITAMAX" class="logo" />
+    </div>
+  </header>
+  <main class="main-content">
+    <section class="hero-welcome">
+      <div class="hero-background-animations">
+        <!-- Animated shapes will be styled divs via CSS -->
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+        <!-- Animated lines could be SVGs or CSS pseudo-elements -->
+      </div>
+      <div class="hero-content-wrapper">
+        <h1 class="hero-title">ITAMAX : L'Art de Construire, l'Excellence en Gestion.</h1>
+        <p class="hero-subtitle">Architectes et maîtres d'œuvre, nous transformons vos ambitions en édifices remarquables. De l'étude technique à la coordination de projets d'envergure, ITAMAX est votre partenaire de confiance pour des réalisations qui allient innovation, fonctionnalité et pérennité.</p>
+        <a href="amo.html" class="hero-cta-button">Explorer nos Projets</a>
+      </div>
+    </section>
+
+    <!-- Le contenu principal existant (commentaires, images Choose) ira ici si besoin, ou sera supprimé si le hero le remplace -->
+    <!-- Pour l'instant, je garde le script projects qui était après le commentaire -->
+    <script>
+      // Configuration des projets pour la page d'accueil
+      const projects = []; // Tableau vide car cette page n'a pas de galerie
+    </script>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
+

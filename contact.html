@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - ITAMAX</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Styles spécifiques pour les éléments de contact */
+    @media (min-width: 769px) {
+      .left-section > div > div > .email-address.contact-info {
+        margin-top: 50px !important;  /* Ajustez cette valeur */
+      }
+      
+      .left-section > div > div > .phone-number {
+        margin: 15px 0 0 !important;  /* Ajustez cette valeur */
+      }
+      
+      .left-section > div > div > .desktop-only {
+        margin-top: 50px !important;  /* Ajustez cette valeur */
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&family=Baloo+Chettan+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body><div class="animated-background"></div>
+  <header class="header">
+    <div class="hamburger-menu">
+      <img src="boutons/HamburMenu.svg" alt="Menu" class="hamburger-icon default-icon">
+      <img src="boutons/HamburMenuHover.svg" alt="Menu" class="hamburger-icon hover-icon">
+    </div>
+    <button class="close-menu" aria-label="Fermer le menu" style="display:none">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <nav class="dropdown-menu">
+      <ul>
+        <li>
+          <a href="index.html" class="menu-item">
+            Accueil
+          </a>
+        </li>
+        <li class="has-submenu">
+          <a href="#" class="menu-item">
+            Projets
+            <i class="fas fa-chevron-down arrow-icon"></i>
+          </a>
+          <ul class="submenu">
+            <li><a href="amo.html">Assistance à Maîtrise d'Ouvrage Déléguée (AMO)</a></li>
+            <li><a href="appins.html">Appuis institutionnels</a></li>
+            <li><a href="peat.html">Projets Études Architecturales et Techniques</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="gsap.html" class="menu-item">
+            Carrousel
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="menu-item active">
+            Contact
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="logo-link" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <img src="boutons/itamaxTextHeader.svg" alt="ITAMAX" class="logo-text">
+    </div>
+    <div class="logo-container" onmouseover="this.querySelector('img').src='boutons/logo-itamaxHover.svg'" onmouseout="this.querySelector('img').src='boutons/logo-itamax.svg'" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <img src="boutons/logo-itamax.svg" alt="Logo ITAMAX" class="logo" />
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="content-container">
+      <div class="left-section">
+        <div style="margin-left: 60px;">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <p style="color: #ffffff; font-size: 0.9rem; margin: 0; font-weight: 500; letter-spacing: 1px; white-space: nowrap; text-transform: uppercase; font-family: 'Baloo Chettan 2', cursive;">
+              N'hésitez pas à nous contacter
+            </p>
+            <p class="email-address contact-info" style="color: #ff8c00; font-family: 'Jura', sans-serif; font-size: 2.5rem; margin: 5px 0 0; white-space: nowrap;">
+              itamax@orange.sn
+            </p>
+            <p class="phone-number" style="color: #ff8c00; font-family: 'Jura', sans-serif; font-size: 2.5rem; white-space: nowrap;">
+              +221 77 450 39 39
+            </p>
+            <p class="phone-number" style="color: #ff8c00; font-family: 'Jura', sans-serif; font-size: 2.5rem; white-space: nowrap;">
+              +221 33 867 18 55
+            </p>
+            <a href="index.html" class="desktop-only" style="color: #ffffff; font-size: 0.9rem; margin: 20px 0 0; font-weight: 500; letter-spacing: 1px; white-space: nowrap; text-transform: uppercase; font-family: 'Baloo Chettan 2', cursive; text-decoration: none; display: inline-block;">
+              Retour à l'accueil
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="right-section">
+        <div style="margin-left: 20px; max-width: 400px;">
+          <p style="color: #ffffff; font-size: 0.9rem; margin: 0 0 40px; font-weight: 500; letter-spacing: 1px; white-space: nowrap; text-transform: uppercase; font-family: 'Baloo Chettan 2', cursive;">
+            Envoyez-nous un message
+          </p>
+          
+          <form style="display: flex; flex-direction: column; gap: 30px; margin-top: 20px;">
+            <div style="position: relative;">
+              <input type="text" placeholder="Votre Nom" style="
+                width: 100%;
+                padding: 10px 0;
+                font-size: 1rem;
+                color: #ffffff;
+                background: transparent;
+                border: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                outline: none;
+                font-family: 'Jura', sans-serif;
+                transition: all 0.3s ease;
+              ">
+              <span style="
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: #ffffff;
+                transition: width 0.3s ease;
+              "></span>
+            </div>
+            
+            <div style="position: relative;">
+              <input type="email" placeholder="Votre adresse Email" style="
+                width: 100%;
+                padding: 10px 0;
+                font-size: 1rem;
+                color: #ffffff;
+                background: transparent;
+                border: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                outline: none;
+                font-family: 'Jura', sans-serif;
+                transition: all 0.3s ease;
+              ">
+              <span style="
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: #ffffff;
+                transition: width 0.3s ease;
+              "></span>
+            </div>
+            
+            <div style="position: relative;">
+              <textarea 
+                id="messageTextarea"
+                placeholder="Comment puis-je vous aider ?" 
+                style="
+                  width: 100%;
+                  min-height: 100px;
+                  padding: 10px 0;
+                  font-size: 1rem;
+                  color: #ffffff;
+                  background: transparent;
+                  border: none;
+                  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                  outline: none;
+                  font-family: 'Jura', sans-serif;
+                  transition: all 0.3s ease;
+                  resize: none;
+                  overflow-y: auto;
+                "
+                rows="4"
+                maxlength="230"
+              ></textarea>
+              <div style="text-align: right; margin-top: 5px;">
+                <span id="charCount" style="font-size: 0.8rem; color: #666; font-family: 'Jura', sans-serif;">0/230</span>
+              </div>
+              <span style="
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: #ffffff;
+                transition: width 0.3s ease;
+              "></span>
+            </div>
+            
+            <button type="submit" style="
+              align-self: flex-start;
+              background: #ffffff;
+              color: #000000;
+              border: none;
+              padding: 12px 40px;
+              border-radius: 15px;
+              font-family: 'Jura', sans-serif;
+              font-size: 0.9rem;
+              font-weight: 500;
+              cursor: pointer;
+              margin: 11px 0 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 8px;
+              transition: all 0.3s ease;
+              min-width: 180px;
+            ">
+              <span style="color: #000000;">Envoyer</span> <span style="font-size: 1.2rem; margin-left: 5px; color: #000000;">►</span>
+            </button>
+            <a href="index.html" class="mobile-only" style="color: #71788f; font-size: 0.9rem; margin: 40px auto 0; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; font-family: 'Baloo Chettan 2', cursive; text-decoration: none; display: none; text-align: center; width: 100%;">
+              Retour à l'accueil
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <style>
+    .left-section .email-address,
+    .left-section .phone-number {
+      margin: 5px 0 0 !important;
+    }
+    .contact-info {
+      margin: 5px 0 0 !important;
+    }
+    @media (min-width: 769px) {
+      .left-section > div {
+        margin-left: 60px;
+      }
+      .email-address {
+        margin-top: 180px !important;
+      }
+    }
+    @media (min-width: 600px) and (max-width: 900px) {
+      button[type="submit"] {
+        margin-top: 36px !important;
+      }
+    }
+    
+    @media (min-width: 901px) and (max-width: 992px) {
+      button[type="submit"] {
+        margin-top: 36px !important;
+      }
+    }
+
+    /* General styles for phone numbers, primarily for desktop */
+    .phone-number {
+      color: #ff8c00;
+      font-family: 'Jura', sans-serif;
+      font-size: 2.5rem; /* Matches email font size on desktop */
+      white-space: nowrap;
+      margin: 0; /* Rely on parent flex gap for spacing */
+      /* Desktop text-align is implicitly left */
+    }
+
+    @media (max-width: 768px) {
+      /* Mobile specific styles for phone numbers */
+      .left-section .phone-number {
+        font-size: 1.8rem !important; /* Match email on mobile */
+        margin: 0 auto !important; /* Rely on parent flex gap, centered */
+        /* text-align: center is inherited from .left-section > div in this view */
+      }
+    }
+
+    @media (max-width: 768px) {
+      .left-section p:first-of-type {
+        margin-bottom: 0 !important;
+      }
+      .left-section .email-address {
+        margin: 0.5rem 0 !important;
+      }
+      .left-section a.desktop-only {
+        margin-top: 1rem !important;
+      }
+    }
+
+    .content-container {
+      display: flex;
+      max-width: 1000px;
+      margin: 50px auto 0;
+      background-color: rgba(16, 136, 216, 0.089);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: relative;
+      min-height: 500px;
+      width: 90%;
+    }
+    
+    .left-section, .right-section {
+      flex: 1;
+      padding: 40px;
+      box-sizing: border-box;
+    }
+    
+    .divider {
+      position: absolute;
+      top: 30px;
+      bottom: 30px;
+      left: 50%;
+      width: 1px;
+      background-color: rgba(255, 255, 255, 0.144);
+    }
+    
+    .desktop-only {
+      display: block;
+    }
+    
+    @media (max-width: 768px) {
+      .desktop-only {
+        display: none !important;
+      }
+      .mobile-only {
+        display: block !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .content-container {
+        flex-direction: column;
+        margin: 40px 15px 60px; /* Ajout de 15px de marge sur les côtés */
+        min-height: auto;
+        width: calc(100% - 30px); /* Réduction de la largeur pour compenser les marges */
+        max-width: 100%; /* S'assurer que la largeur maximale est respectée */
+        border-radius: 0;
+        box-sizing: border-box; /* Inclure les marges dans la largeur */
+      }
+      
+      .left-section > div {
+        margin: 0 auto !important;
+        text-align: center;
+        padding: 20px;
+        position: relative;
+        left: -4mm; /* Décalage de 2mm vers la gauche */
+      }
+      
+      .right-section > div {
+        margin: 0 !important;
+        max-width: 100% !important;
+        padding: 0 20px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      
+      .left-section p[style*="color: #ff8c00"] {
+        font-size: 1.8rem !important;
+        text-align: center;
+        margin: 20px auto 0 !important; /* Reduced top margin from 80px to 20px */
+      }
+      
+      .left-section .phone-number {
+        display: inline-block;
+        position: relative;
+        left: 1mm; /* Décalage de 1mm vers la droite */
+      }
+      
+      .divider {
+        position: static;
+        width: 80%;
+        height: 1px;
+        margin: 10px auto; /* Reduced top/bottom margin from 20px to 10px */
+        background-color: rgba(163, 153, 153, 0.466);
+      }
+    }
+  </style>
+
+  <footer class="footer" style="position: relative; z-index: 1;">
+    <div class="separator"></div>
+    <div class="footer-text">© 2025 ITAMAX Architecture. Tous droits réservés.</div>
+  </footer>
+
+  <script>
+    // Configuration des projets pour la page contact
+    const projects = []; // Tableau vide car cette page n'a pas de galerie
+    
+    // Gestion du compteur de caractères
+    document.addEventListener('DOMContentLoaded', function() {
+      const textarea = document.querySelector('textarea');
+      const charCount = document.getElementById('charCount');
+      
+      if (textarea && charCount) {
+        textarea.addEventListener('input', function() {
+          const currentLength = this.value.length;
+          charCount.textContent = currentLength + '/230';
+          
+          // Changer la couleur en rouge si on approche de la limite
+          if (currentLength > 200) {
+            charCount.style.color = '#ff6b6b';
+          } else {
+            charCount.style.color = '#666';
+          }
+        });
+      }
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>
+

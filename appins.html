@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Appuis Institutionnels - ITAMAX</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <header class="header">
+    <div class="hamburger-menu">
+      <img src="boutons/HamburMenu.svg" alt="Menu" class="hamburger-icon default-icon">
+      <img src="boutons/HamburMenuHover.svg" alt="Menu" class="hamburger-icon hover-icon">
+    </div>
+    <button class="close-menu" aria-label="Fermer le menu" style="display:none">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <nav class="dropdown-menu">
+      <ul>
+        <li>
+          <a href="index.html" class="menu-item">
+            Accueil
+          </a>
+        </li>
+        <li class="has-submenu active">
+          <a href="#" class="menu-item">
+            Projets
+            <i class="fas fa-chevron-down arrow-icon"></i>
+          </a>
+          <ul class="submenu">
+            <li><a href="amo.html">Assistance à Maîtrise d'Ouvrage Déléguée (AMO)</a></li>
+            <li><a href="appins.html" class="active">Appuis institutionnels</a></li>
+            <li><a href="peat.html">Projets Études Architecturales et Techniques</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="gsap.html" class="menu-item">
+            Carrousel
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="menu-item">
+            Contact
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="logo-link" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <img src="boutons/itamaxTextHeader.svg" alt="ITAMAX" class="logo-text">
+    </div>
+    <div class="logo-container" onmouseover="this.querySelector('img').src='boutons/logo-itamaxHover.svg'" onmouseout="this.querySelector('img').src='boutons/logo-itamax.svg'" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <img src="boutons/logo-itamax.svg" alt="Logo ITAMAX" class="logo" />
+    </div>
+  </header>
+  <main class="main-content">
+    <!-- Boutons de navigation -->
+    <div class="button-container">
+      <a href="amo.html" class="nav-button">Assistance à Maîtrise d'Ouvrage Déléguée (AMO)</a>
+      <a href="appins.html" class="nav-button active">Appuis institutionnels</a>
+      <a href="peat.html" class="nav-button">Projets Études Architecturales et Techniques</a>
+    </div>
+    <!-- Contenu spécifique à la page Appuis Institutionnels -->
+    <div class="page-content">
+      <section class="project-section">
+        <!-- Navigation supérieure -->
+        <div class="project-nav top-nav">
+          <button class="nav-arrow project-prev">
+            <img src="boutons/left-arrow.svg" alt="Précédent" width="20" height="17">
+          </button>
+          <h2 class="project-title">PROJET 1</h2>
+          <div class="nav-counter">
+            <button class="nav-arrow project-next">
+              <img src="boutons/right-arrow.svg" alt="Suivant" width="20" height="17">
+            </button>
+            <span>01/01</span>
+          </div>
+        </div>
+        
+        <!-- Image du projet -->
+        <div class="project-image-container">
+          <img src="" alt="Projet Appui Institutionnel" class="project-image project-image-display">
+        </div>
+        
+        <!-- Navigation inférieure -->
+        <div class="project-nav bottom-nav">
+          <button class="nav-arrow image-prev">
+            <img src="boutons/left-arrow-586E91.svg" alt="Précédent" width="20" height="17">
+          </button>
+          <h3 class="project-subtitle">Sous-titre du projet</h3>
+          <div class="nav-counter">
+            <button class="nav-arrow image-next">
+              <img src="boutons/right-arrow-586E91.svg" alt="Suivant" width="20" height="17">
+            </button>
+            <span>01/01</span>
+          </div>
+        </div>
+      </section>
+    </div>
+    
+    <script>
+      // Configuration des projets pour Appuis Institutionnels
+      const projects = [
+        {
+          id: 'projet1',
+          title: 'AFRICA CENTERS OF EXCELLENCE (ACE)',
+          images: [
+            {
+              src: 'imagesprojets/projet-appins-CECCBADAbidjan.webp',
+              subtitle: 'CECCBAD Abidjan'
+            },
+            {
+              src: 'imagesprojets/projet-appins-Djibouti.webp',
+              subtitle: "OCT 2023 - Ecole d'ingénieurs DJIBOUTI"
+            }
+          ]
+        },
+        {
+          id: 'projet2',
+          title: 'CONSULTANT INDIVIDUEL - BANQUE MONDIALE - KINSHASA',
+          images: [
+            {
+              src: 'imagesprojets/projet-BM-Kinshasa.webp',
+              subtitle: 'Complexe Royale de KANANGA - 18 000 élèves (01)'
+            }
+          ]
+        },
+        {
+          id: 'projet3',
+          title: 'CONSULTANT INDIVIDUEL - BANQUE MONDIALE - SÉNÉGAL',
+          images: [
+            {
+              src: 'imagesprojets/Constructiondes LYNAQEde Sédhiou(01).webp',
+              subtitle: 'Construction des LYNAQE de Sédhiou (01)'
+            },
+            {
+              src: 'imagesprojets/Constructiondes LYNAQEde Sédhiou(02).webp',
+              subtitle: 'Construction des LYNAQE de Sédhiou (02)'
+            }
+          ]
+        },
+        {
+          id: 'projet4',
+          title: 'CONSULTANT INDIVIDUEL - BANQUE MONDIALE - BURKINA FASO',
+          images: [
+            {
+              src: 'imagesprojets/Visitedechantier avecleCMUdela BanqueMondiale.webp',
+              subtitle: 'Visite de chantier avec le CMU de la Banque Mondiale'
+            }
+          ]
+        }
+        // Ajoutez d'autres projets ici au fur et à mesure
+      ];
+    </script>
+  </main>
+
+  <!-- Les scripts sont maintenant dans le head avec defer pour un chargement optimal -->
+
+  <!-- Lightbox Modal Structure -->
+  <div id="lightbox-modal" class="lightbox-modal" style="display: none;">
+    <button class="lightbox-close" aria-label="Fermer">&times;</button>
+    <div class="lightbox-content">
+      <h2 class="lightbox-project-title">Titre du Projet</h2>
+      <div class="lightbox-image-container">
+        <img src="" alt="Image agrandie" class="lightbox-image lightbox-image-display">
+      </div>
+      <h3 class="lightbox-image-subtitle">Sous-titre de l'image</h3>
+      <div class="lightbox-nav">
+        <button class="lightbox-arrow lightbox-prev" aria-label="Précédent">
+          <img src="boutons/left-arrow-586E91.svg" alt="Précédent">
+        </button>
+        <button class="lightbox-arrow lightbox-next" aria-label="Suivant">
+          <img src="boutons/right-arrow-586E91.svg" alt="Suivant">
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+

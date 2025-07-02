@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PEAT - ITAMAX</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body><div class="animated-background"></div>
+  <header class="header">
+    <div class="hamburger-menu">
+      <img src="boutons/HamburMenu.svg" alt="Menu" class="hamburger-icon default-icon">
+      <img src="boutons/HamburMenuHover.svg" alt="Menu" class="hamburger-icon hover-icon">
+    </div>
+    <button class="close-menu" aria-label="Fermer le menu" style="display:none">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <nav class="dropdown-menu">
+      <ul>
+        <li>
+          <a href="index.html" class="menu-item">
+            Accueil
+          </a>
+        </li>
+        <li class="has-submenu active">
+          <a href="#" class="menu-item">
+            Projets
+            <i class="fas fa-chevron-down arrow-icon"></i>
+          </a>
+          <ul class="submenu">
+            <li><a href="amo.html">Assistance à Maîtrise d'Ouvrage Déléguée (AMO)</a></li>
+            <li><a href="appins.html">Appuis institutionnels</a></li>
+            <li><a href="peat.html" class="active">Projets Études Architecturales et Techniques</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="gsap.html" class="menu-item">
+            Carrousel
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="menu-item">
+            Contact
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="logo-link" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <img src="boutons/itamaxTextHeader.svg" alt="ITAMAX" class="logo-text">
+    </div>
+    <div class="logo-container" onmouseover="this.querySelector('img').src='boutons/logo-itamaxHover.svg'" onmouseout="this.querySelector('img').src='boutons/logo-itamax.svg'" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <img src="boutons/logo-itamax.svg" alt="Logo ITAMAX" class="logo" />
+    </div>
+  </header>
+  <main class="main-content">
+    <!-- Boutons de navigation principaux -->
+    <div class="button-container">
+      <a href="amo.html" class="nav-button">Assistance à Maîtrise d'Ouvrage Déléguée (AMO)</a>
+      <a href="appins.html" class="nav-button">Appuis institutionnels</a>
+      <a href="peat.html" class="nav-button active">Projets Études Architecturales et Techniques</a>
+    </div>
+    
+    <!-- Boutons de sous-catégorie -->
+    <div class="button-container subcategory-buttons">
+      <a href="batins.html" class="nav-button sub-button">Bâtiments institutionnels</a>
+      <a href="imvil.html" class="nav-button sub-button">Immeubles et Villa</a>
+    </div>
+    
+    <!-- Image Choose2.svg - Visible uniquement sur mobile -->
+    <div class="choose2-image-container">
+      <img src="boutons/Choose2.svg" alt="Sélectionnez une catégorie" class="choose2-image">
+    </div>
+    
+    <!-- Image Choose.svg - Visible uniquement sur tablette et desktop -->
+    <div class="choose-image-container">
+      <img src="boutons/Choose.svg" alt="Sélectionnez une catégorie" class="choose-image">
+    </div>
+    <!-- Contenu spécifique à la page PEAT -->
+    <div class="page-content">
+    </div>
+    
+    <script>
+      // Configuration des projets pour PEAT
+      const projects = []; // Tableau vide car cette page utilise des sous-pages
+    </script>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
+

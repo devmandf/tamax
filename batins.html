@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bâtiments Institutionnels - ITAMAX</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    /* Ajustement de l'espacement de la galerie */
+    .project-section {
+      max-width: 896px;
+      margin: 0 auto;
+      padding: 20px 15px;
+    }
+    
+    .project-image-container {
+      width: 100%;
+      max-width: 896px;
+      height: 473px;
+      overflow: hidden;
+      margin: 0 auto;
+      border-radius: 4px;
+    }
+    
+    .project-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Styles responsifs */
+    @media (max-width: 992px) {
+      .project-title {
+        font-size: 1.3rem;
+      }
+      
+      .project-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .nav-arrow {
+        margin: 0 80px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .project-section {
+        padding: 20px 15px;
+      }
+      
+      .project-title {
+        font-size: 1.1rem;
+      }
+      
+      .project-subtitle {
+        font-size: 0.9rem;
+      }
+      
+      .nav-arrow {
+        margin: 0 40px;
+      }
+      
+      .project-image-container {
+        height: auto;
+        aspect-ratio: 896 / 473;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .project-title {
+        font-size: 1rem;
+      }
+      
+      .project-subtitle {
+        font-size: 0.8rem;
+      }
+      
+      .nav-arrow {
+        margin: 0 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="hamburger-menu">
+      <img src="boutons/HamburMenu.svg" alt="Menu" class="hamburger-icon default-icon">
+      <img src="boutons/HamburMenuHover.svg" alt="Menu" class="hamburger-icon hover-icon">
+    </div>
+    <button class="close-menu" aria-label="Fermer le menu" style="display:none">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <nav class="dropdown-menu">
+      <ul>
+        <li>
+          <a href="index.html" class="menu-item">
+            Accueil
+          </a>
+        </li>
+        <li class="has-submenu active" style="--submenu-display: block;">
+          <a href="#" class="menu-item active">
+            Projets
+            <i class="fas fa-chevron-down arrow-icon"></i>
+          </a>
+          <ul class="submenu" style="display: block; max-height: 500px; opacity: 1; visibility: visible; padding: 0.5rem 2rem 1rem;">
+            <li><a href="amo.html">Assistance à Maîtrise d'Ouvrage Déléguée (AMO)</a></li>
+            <li><a href="appins.html">Appuis institutionnels</a></li>
+            <li><a href="peat.html" class="active">Projets Études Architecturales et Techniques</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="gsap.html" class="menu-item">
+            Carrousel
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="menu-item">
+            Contact
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="logo-link" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <img src="boutons/itamaxTextHeader.svg" alt="ITAMAX" class="logo-text">
+    </div>
+    <div class="logo-container" onmouseover="this.querySelector('img').src='boutons/logo-itamaxHover.svg'" onmouseout="this.querySelector('img').src='boutons/logo-itamax.svg'" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <img src="boutons/logo-itamax.svg" alt="Logo ITAMAX" class="logo" />
+    </div>
+  </header>
+  <main class="main-content">
+    <!-- Boutons de navigation principaux -->
+    <div class="button-container">
+      <a href="amo.html" class="nav-button">Assistance à Maîtrise d'Ouvrage Déléguée (AMO)</a>
+      <a href="appins.html" class="nav-button">Appuis institutionnels</a>
+      <a href="peat.html" class="nav-button active">Projets Études Architecturales et Techniques</a>
+    </div>
+    
+    <!-- Boutons de sous-catégorie -->
+    <div class="button-container subcategory-buttons">
+      <a href="batins.html" class="nav-button sub-button active">Bâtiments institutionnels</a>
+      <a href="imvil.html" class="nav-button sub-button">Immeubles et Villa</a>
+    </div>
+    
+    <!-- Galerie d'images -->
+    <div class="page-content">
+      <section class="project-section">
+        <!-- Navigation supérieure -->
+        <div class="project-nav top-nav">
+          <button class="nav-arrow project-prev">
+            <img src="boutons/left-arrow.svg" alt="Projet précédent" width="20" height="17">
+          </button>
+          <h2 class="project-title">CONSTRUCTION DES ABATTOIRS DE MBOUR</h2>
+          <div class="nav-counter">
+            <button class="nav-arrow project-next">
+              <img src="boutons/right-arrow.svg" alt="Projet suivant" width="20" height="17">
+            </button>
+            <span>01/10</span>
+          </div>
+        </div>
+        
+        <!-- Image du projet -->
+        <div class="project-image-container">
+          <img src="imagesprojets/Abattoirs-bovins-et-ovins-(01).webp" 
+               alt="Abattoirs bovins et ovins" 
+               class="project-image project-image-display" 
+               onerror="console.error('Erreur de chargement de l\'image:', this.src)">
+        </div>
+        
+        <!-- Navigation inférieure -->
+        <div class="project-nav bottom-nav">
+          <button class="nav-arrow image-prev">
+            <img src="boutons/left-arrow-586E91.svg" alt="Image précédente" width="20" height="17">
+          </button>
+          <h3 class="project-subtitle">Abattoirs bovins et ovins (01)</h3>
+          <div class="nav-counter">
+            <button class="nav-arrow image-next">
+              <img src="boutons/right-arrow-586E91.svg" alt="Image suivante" width="20" height="17">
+            </button>
+            <span>01/03</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Configuration des projets
+    const projects = [
+      {
+        id: 'abattoirs-mbour',
+        title: 'CONSTRUCTION DES ABATTOIRS DE MBOUR',
+        images: [
+            { src: 'imagesprojets/Abattoirs-bovins-et-ovins-(01).webp', subtitle: 'Abattoirs bovins et ovins (01)' },
+            { src: 'imagesprojets/Abattoirs-bovins-et-ovins-(02).webp', subtitle: 'Abattoirs bovins et ovins (02)' },
+            { src: 'imagesprojets/Abattoirs-bovins-et-ovins-(03).webp', subtitle: 'Abattoirs bovins et ovins (03)' }
+        ]
+      },
+      {
+        id: 'abattoirs-tivaouane',
+        title: 'CONSTRUCTION DES ABATTOIRS DE TIVAOUANE',
+        images: [
+            { src: 'imagesprojets/abattoirstivaouane01.webp', subtitle: 'Abattoirs de Tivaouane (01)' },
+            { src: 'imagesprojets/abattoirstivaouane02.webp', subtitle: 'Abattoirs de Tivaouane (02)' },
+            { src: 'imagesprojets/abattoirstivaouane03.webp', subtitle: 'Abattoirs de Tivaouane (03)' }
+        ]
+      },
+      {
+        id: 'cfpt-type-b',
+        title: 'CFPT de TYPE B',
+        images: [
+            { src: 'imagesprojets/CFPT-B1.webp', subtitle: 'CFPT (01)' },
+            { src: 'imagesprojets/CFPT-B2.webp', subtitle: 'CFPT (02)' },
+            { src: 'imagesprojets/CFPT-B3.webp', subtitle: 'CFPT (03)' },
+            { src: 'imagesprojets/CFPT-B4.webp', subtitle: 'CFPT (04)' }
+        ]
+      },
+      {
+        id: 'chnp',
+        title: 'CENTRE HOSPITALIER NATIONAL PSYCHIATRIQUE',
+        images: [
+            { src: 'imagesprojets/CHNP01.webp', subtitle: 'CHNP de Thiaroye (01)' },
+            { src: 'imagesprojets/CHNP02.webp', subtitle: 'CHNP de Thiaroye (02)' },
+            { src: 'imagesprojets/CHNP03.webp', subtitle: 'CHNP de Thiaroye (03)' }
+        ]
+      },
+      {
+        id: 'cs-yeumbeul',
+        title: 'CENTRE DE SANTÉ DE YEUMBEUL DAKAR',
+        images: [
+            { src: 'imagesprojets/CS-Yeumbeul01.webp', subtitle: 'Centre de Santé Yeumbeul (01)' },
+            { src: 'imagesprojets/CS-Yeumbeul02.webp', subtitle: 'Centre de Santé Yeumbeul (02)' }
+        ]
+      },
+      {
+        id: 'onfp-st-louis',
+        title: 'CONSTRUCTION ONFP À ST-LOUIS',
+        images: [
+            { src: 'imagesprojets/ONFPSTLOUIS01.webp', subtitle: 'ONFP St-LOUIS (01)' },
+            { src: 'imagesprojets/ONFPSTLOUIS02.webp', subtitle: 'ONFP St-LOUIS (02)' },
+            { src: 'imagesprojets/ONFPSTLOUIS03.webp', subtitle: 'ONFP St-LOUIS (03)' },
+            { src: 'imagesprojets/ONFPSTLOUIS04.webp', subtitle: 'ONFP St-LOUIS (04)' }
+        ]
+      },
+      {
+        id: 'hotel-de-ville',
+        title: 'PROTOTYPE D\'HÔTEL DE VILLE',
+        images: [
+            { src: 'imagesprojets/Hoteldeville01.webp', subtitle: 'Hôtel de ville (01)' },
+            { src: 'imagesprojets/Hoteldeville02.webp', subtitle: 'Hôtel de ville (02)' }
+        ]
+      },
+      {
+        id: 'sdepa-guinguineo',
+        title: 'SDEPA Guinguinéo Sénégal',
+        images: [
+            { src: 'imagesprojets/SDEPAGuinguinéo01.webp', subtitle: 'SDEPA (01)' },
+            { src: 'imagesprojets/SDEPAGuinguinéo02.webp', subtitle: 'SDEPA (02)' },
+            { src: 'imagesprojets/SDEPAGuinguinéo03.webp', subtitle: 'SDEPA (03)' }
+        ]
+      },
+      {
+        id: 'siege-mepn',
+        title: 'Siège MEPN',
+        images: [
+            { src: 'imagesprojets/MEPN01.webp', subtitle: 'MEPN (01)' },
+            { src: 'imagesprojets/MEPN02.webp', subtitle: 'MEPN (02)' },
+            { src: 'imagesprojets/MEPN03.webp', subtitle: 'MEPN (03)' }
+        ]
+      },
+      {
+        id: 'sopasen',
+        title: 'SIÈGE DE LA SOCIÉTÉ DE PÊCHE ET D\'ARMEMENT AU SÉNÉGAL',
+        images: [
+            { src: 'imagesprojets/sopasen01.webp', subtitle: 'SOPASEN (01)' }
+        ]
+      }
+    ];
+  </script>
+  <script src="script.js"></script>
+
+  <!-- Lightbox Modal Structure -->
+  <div id="lightbox-modal" class="lightbox-modal" style="display: none;">
+    <button class="lightbox-close" aria-label="Fermer">&times;</button>
+    <div class="lightbox-content">
+      <h2 class="lightbox-project-title">Titre du Projet</h2>
+      <div class="lightbox-image-container">
+        <img src="" alt="Image agrandie" class="lightbox-image lightbox-image-display">
+      </div>
+      <h3 class="lightbox-image-subtitle">Sous-titre de l'image</h3>
+      <div class="lightbox-nav">
+        <button class="lightbox-arrow lightbox-prev" aria-label="Précédent">
+          <img src="boutons/left-arrow-586E91.svg" alt="Précédent">
+        </button>
+        <button class="lightbox-arrow lightbox-next" aria-label="Suivant">
+          <img src="boutons/right-arrow-586E91.svg" alt="Suivant">
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+

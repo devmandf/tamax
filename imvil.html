@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Immeubles et Villas - ITAMAX</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    /* Ajustement de l'espacement de la galerie */
+    .project-section {
+      max-width: 896px;
+      margin: 0 auto;
+      padding: 20px 15px;
+    }
+    
+    .project-image-container {
+      width: 100%;
+      max-width: 896px;
+      height: 473px;
+      overflow: hidden;
+      margin: 0 auto;
+      border-radius: 4px;
+    }
+    
+    .project-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Styles responsifs */
+    @media (max-width: 992px) {
+      .project-title {
+        font-size: 1.3rem;
+      }
+      
+      .project-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .nav-arrow {
+        margin: 0 80px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .project-section {
+        padding: 20px 15px;
+      }
+      
+      .project-title {
+        font-size: 1.1rem;
+      }
+      
+      .project-subtitle {
+        font-size: 0.9rem;
+      }
+      
+      .nav-arrow {
+        margin: 0 40px;
+      }
+      
+      .project-image-container {
+        height: auto;
+        aspect-ratio: 896 / 473;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .project-title {
+        font-size: 1rem;
+      }
+      
+      .project-subtitle {
+        font-size: 0.8rem;
+      }
+      
+      .nav-arrow {
+        margin: 0 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="hamburger-menu">
+      <img src="boutons/HamburMenu.svg" alt="Menu" class="hamburger-icon default-icon">
+      <img src="boutons/HamburMenuHover.svg" alt="Menu" class="hamburger-icon hover-icon">
+    </div>
+    <button class="close-menu" aria-label="Fermer le menu" style="display:none">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <nav class="dropdown-menu">
+      <ul>
+        <li>
+          <a href="index.html" class="menu-item">
+            Accueil
+          </a>
+        </li>
+        <li class="has-submenu active" style="--submenu-display: block;">
+          <a href="#" class="menu-item active">
+            Projets
+            <i class="fas fa-chevron-down arrow-icon"></i>
+          </a>
+          <ul class="submenu" style="display: block; max-height: 500px; opacity: 1; visibility: visible; padding: 0.5rem 2rem 1rem;">
+            <li><a href="amo.html">Assistance à Maîtrise d'Ouvrage Déléguée (AMO)</a></li>
+            <li><a href="appins.html">Appuis institutionnels</a></li>
+            <li><a href="peat.html" class="active">Projets Études Architecturales et Techniques</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="gsap.html" class="menu-item">
+            Carrousel
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="menu-item">
+            Contact
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="logo-link" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <img src="boutons/itamaxTextHeader.svg" alt="ITAMAX" class="logo-text">
+    </div>
+    <div class="logo-container" onmouseover="this.querySelector('img').src='boutons/logo-itamaxHover.svg'" onmouseout="this.querySelector('img').src='boutons/logo-itamax.svg'" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <img src="boutons/logo-itamax.svg" alt="Logo ITAMAX" class="logo" />
+    </div>
+  </header>
+  <main class="main-content">
+    <!-- Boutons de navigation principaux -->
+    <div class="button-container">
+      <a href="amo.html" class="nav-button">Assistance à Maîtrise d'Ouvrage Déléguée (AMO)</a>
+      <a href="appins.html" class="nav-button">Appuis institutionnels</a>
+      <a href="peat.html" class="nav-button active">Projets Études Architecturales et Techniques</a>
+    </div>
+    
+    <!-- Boutons de sous-catégorie -->
+    <div class="button-container subcategory-buttons">
+      <a href="batins.html" class="nav-button sub-button">Bâtiments institutionnels</a>
+      <a href="imvil.html" class="nav-button sub-button active">Immeubles et Villa</a>
+    </div>
+    
+    <!-- Galerie d'images -->
+    <div class="page-content">
+      <section class="project-section">
+        <!-- Navigation supérieure -->
+        <div class="project-nav top-nav">
+          <button class="nav-arrow project-prev">
+            <img src="boutons/left-arrow.svg" alt="Projet précédent" width="20" height="17">
+          </button>
+          <h2 class="project-title">VILLA FAMILIALE À FATICK</h2>
+          <div class="nav-counter">
+            <button class="nav-arrow project-next">
+              <img src="boutons/right-arrow.svg" alt="Projet suivant" width="20" height="17">
+            </button>
+            <span>01/10</span>
+          </div>
+        </div>
+        
+        <!-- Image du projet -->
+        <div class="project-image-container">
+          <img src="imagesprojets/Villa-Fatick-(01).webp" alt="Immeubles et Villa" class="project-image project-image-display" onerror="console.error('Erreur de chargement de l\'image:', this.src)">
+        </div>
+        
+        <!-- Navigation inférieure -->
+        <div class="project-nav bottom-nav">
+          <button class="nav-arrow image-prev">
+            <img src="boutons/left-arrow-586E91.svg" alt="Image précédente" width="20" height="17">
+          </button>
+          <h3 class="project-subtitle">Villa Fatick (01)</h3>
+          <div class="nav-counter">
+            <button class="nav-arrow image-next">
+              <img src="boutons/right-arrow-586E91.svg" alt="Image suivante" width="20" height="17">
+            </button>
+            <span>01/03</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Configuration des projets
+    const projects = [
+      {
+        id: 'villa-fatick',
+        title: 'VILLA FAMILIALE À FATICK',
+        images: [
+          { src: 'imagesprojets/Villa-Fatick-(01).webp', subtitle: 'Villa Fatick (01)' },
+          { src: 'imagesprojets/Villa-Fatick-(02).webp', subtitle: 'Villa Fatick (02)' },
+          { src: 'imagesprojets/Villa-Fatick-(03).webp', subtitle: 'Villa Fatick (03)' }
+        ]
+      },
+      {
+        id: 'villa-grand-yoff',
+        title: 'EXTENSION ET RÉHABILITATION VILLA GRAND YOFF',
+        images: [
+          { src: 'imagesprojets/R+1-en-R+3-Grand-Yoff-(01).webp', subtitle: 'R+1 en R+3 Grand Yoff (01)' },
+          { src: 'imagesprojets/R+1-en-R+3-Grand-Yoff-(02).webp', subtitle: 'R+1 en R+3 Grand Yoff (02)' },
+          { src: 'imagesprojets/R+1-en-R+3-Grand-Yoff-(03).webp', subtitle: 'R+1 en R+3 Grand Yoff (03)' }
+        ]
+      },
+      {
+        id: 'immeuble-hlm',
+        title: 'IMMEUBLE R+4 À HLM GRAND YOFF',
+        images: [
+          { src: 'imagesprojets/Immeuble-R+4-(01).webp', subtitle: 'Immeuble R+4 (01)' },
+          { src: 'imagesprojets/Immeuble-R+4-(02).webp', subtitle: 'Immeuble R+4 (02)' },
+          { src: 'imagesprojets/Immeuble-R+4-(03).webp', subtitle: 'Immeuble R+4 (03)' }
+        ]
+      },
+      {
+        id: 'villa-ouest-foire',
+        title: 'VILLA À OUEST FOIRE',
+        images: [
+          { src: 'imagesprojets/Villa-Ouest-Foire-(01).webp', subtitle: 'Villa Ouest Foire (01)' },
+          { src: 'imagesprojets/Villa-Ouest-Foire-(02).webp', subtitle: 'Villa Ouest Foire (02)' }
+        ]
+      },
+      {
+        id: 'immeuble-keur-mbaye',
+        title: 'IMMEUBLE À KEUR MBAYE FALL',
+        images: [
+          { src: 'imagesprojets/R+5-Keur-Mbaye-Fall-(01).webp', subtitle: 'R+5 Keur Mbaye Fall (01)' },
+          { src: 'imagesprojets/R+5-Keur-Mbaye-Fall-(02).webp', subtitle: 'R+5 Keur Mbaye Fall (02)' },
+          { src: 'imagesprojets/R+5-Keur-Mbaye-Fall-(03).webp', subtitle: 'R+5 Keur Mbaye Fall (03)' }
+        ]
+      },
+      {
+        id: 'vip-almadies',
+        title: 'VIP R+3 LOUNGE ALMADIES DAKAR',
+        images: [
+          { src: 'imagesprojets/R+3-VIP-Lounge-Almadie-(01).webp', subtitle: 'R+3 VIP Lounge Almadie (01)' },
+          { src: 'imagesprojets/R+3-VIP-Lounge-Almadie-(02).webp', subtitle: 'R+3 VIP Lounge Almadie (02)' },
+          { src: 'imagesprojets/R+3-VIP-Lounge-Almadie-(03).webp', subtitle: 'R+3 VIP Lounge Almadie (03)' }
+        ]
+      },
+      {
+        id: 'immeuble-patte-oie',
+        title: 'IMMEUBLE R+7 PATTE D\'OIE',
+        images: [
+          { src: 'imagesprojets/R+7-Patte-d-Oie-(01).webp', subtitle: 'R+7 Patte d\'Oie (01)' },
+          { src: 'imagesprojets/R+7-Patte-d-Oie-(02).webp', subtitle: 'R+7 Patte d\'Oie (02)' }
+        ]
+      },
+      {
+        id: 'villa-mbour',
+        title: 'VILLA GRAND STANDING MBOUR',
+        images: [
+          { src: 'imagesprojets/Villa-Type-Nord-Américaine-(01).webp', subtitle: 'Villa Type Nord-Américaine (01)' },
+          { src: 'imagesprojets/Villa-Type-Nord-Américaine-(02).webp', subtitle: 'Villa Type Nord-Américaine (02)' },
+          { src: 'imagesprojets/Villa-Type-Nord-Américaine-(03).webp', subtitle: 'Villa Type Nord-Américaine (03)' }
+        ]
+      },
+      {
+        id: 'villa-nouakchott',
+        title: 'VILLA À NOUAKCHOTT MAURITANIE',
+        images: [
+          { src: 'imagesprojets/Villa-grand-standing-(01).webp', subtitle: 'Villa grand standing (01)' },
+          { src: 'imagesprojets/Villa-grand-standing-(02).webp', subtitle: 'Villa grand standing (02)' },
+          { src: 'imagesprojets/Villa-grand-standing-(03).webp', subtitle: 'Villa grand standing (03)' },
+          { src: 'imagesprojets/Villa-grand-standing-(04).webp', subtitle: 'Villa grand standing (04)' },
+          { src: 'imagesprojets/Villa-grand-standing-(05).webp', subtitle: 'Villa grand standing (05)' },
+          { src: 'imagesprojets/Villa-grand-standing-(06).webp', subtitle: 'Villa grand standing (06)' }
+        ]
+      },
+      {
+        id: 'villa-sacre-coeur',
+        title: 'VILLA SACRÉ COEUR DAKAR',
+        images: [
+          { src: 'imagesprojets/Villa-300-m2-(01).webp', subtitle: 'Villa 300 m2 (01)' },
+          { src: 'imagesprojets/Villa-300-m2-(02).webp', subtitle: 'Villa 300 m2 (02)' },
+          { src: 'imagesprojets/Villa-300-m2-(03).webp', subtitle: 'Villa 300 m2 (03)' }
+        ]
+      }
+    ];
+  </script>
+  <script src="script.js"></script>
+
+  <!-- Lightbox Modal Structure -->
+  <div id="lightbox-modal" class="lightbox-modal" style="display: none;">
+    <button class="lightbox-close" aria-label="Fermer">&times;</button>
+    <div class="lightbox-content">
+      <h2 class="lightbox-project-title">Titre du Projet</h2>
+      <div class="lightbox-image-container">
+        <img src="" alt="Image agrandie" class="lightbox-image lightbox-image-display">
+      </div>
+      <h3 class="lightbox-image-subtitle">Sous-titre de l'image</h3>
+      <div class="lightbox-nav">
+        <button class="lightbox-arrow lightbox-prev" aria-label="Précédent">
+          <img src="boutons/left-arrow-586E91.svg" alt="Précédent">
+        </button>
+        <button class="lightbox-arrow lightbox-next" aria-label="Suivant">
+          <img src="boutons/right-arrow-586E91.svg" alt="Suivant">
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+

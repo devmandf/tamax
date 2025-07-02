@@ -1,0 +1,1778 @@
+/* ===== INDICATEUR DE CHARGEMENT CIRCULAIRE ===== */
+/* Flou sur le contenu principal pendant le chargement */
+body.loading::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(39, 44, 59, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9998;
+    pointer-events: none;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(39, 44, 59, 0.98);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: 'Jura', sans-serif;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.loading-container {
+    text-align: center;
+    color: #fff;
+}
+
+.loading-circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+}
+
+.loading-circle svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.loading-circle-progress {
+    transform: rotate(-90deg);
+    transition: all 0.3s ease-out;
+}
+
+.loading-percent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #e9660e;
+    font-family: 'Jura', sans-serif;
+}
+
+.loading-text {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Animation de l'arc de cercle */
+@keyframes circleProgress {
+    from { stroke-dashoffset: 339.292; }
+    to { stroke-dashoffset: 0; }
+}
+
+/* Animation de fondu à la fin du chargement */
+@keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* ===== STYLES POUR LA SECTION PROJET ===== */
+.project-section {
+    max-width: 896px;
+    margin: 0 auto;
+    padding: 20px 15px;
+}
+
+.project-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.top-nav {
+    color: white;
+}
+
+.top-nav .nav-arrow {
+    display: none; /* Masque uniquement les flèches de navigation en haut */
+}
+
+.top-nav .nav-counter span {
+    font-family: 'Jura', sans-serif;
+}
+
+.bottom-nav {
+    color: #586E91;
+}
+
+.bottom-nav .nav-counter span {
+    color: #586E91;
+    font-family: 'Jura', sans-serif;
+}
+
+.nav-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0 122px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; /* Ensure padding/border don't alter final size */
+    width: 20px;  /* Match desktop img width */
+    height: 17px; /* Match desktop img height */
+}
+
+.nav-arrow img {
+    width: 20px;
+    height: 17px;
+    object-fit: contain;
+}
+
+.project-title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 10px;
+    text-align: center;
+    flex-grow: 1;
+    height: 4.4rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Jura', sans-serif;
+}
+
+.project-subtitle {
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0 20px;
+    text-align: center;
+    flex-grow: 1;
+    height: 2.7rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #586E91;
+    font-family: 'Jura', sans-serif;
+}
+
+.nav-counter {
+    font-family: 'Jura', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.project-image-container {
+    width: 100%;
+    max-width: 896px;
+    height: 473px;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 4px;
+    position: relative; /* Kept for potential future use, but not strictly needed for single image flow */
+}
+
+.project-image { 
+    /* This class is now ALONE on the single image in main gallery. */
+    /* It ALREADY has width: 100%; height: 100%; object-fit: cover; from its original rule. */
+    /* We just need to ensure it has the transition and border-radius. */
+    border-radius: 4px;
+    transition: opacity 0.3s ease-in-out; 
+}
+
+/* Styles for .project-image-display, .active-img, .preload-img are no longer needed for the main gallery */
+/* .project-image-display { ... } */
+/* .project-image-display.active-img { ... } */
+/* .project-image-display.preload-img { ... } */
+
+
+.nav-arrow:focus,
+.nav-arrow:active {
+    outline: none; /* Prevent shift from browser default focus outline */
+}
+
+/* Styles responsifs */
+/* Tablettes */
+@media (max-width: 992px) {
+    .project-title {
+        font-size: 1.3rem;
+    }
+    
+    .project-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .nav-arrow {
+        margin: 0 80px;
+        width: 16px;  /* Match tablet img width */
+        height: 14px; /* Match tablet img height */
+    }
+    
+    .nav-arrow img {
+        width: 16px;
+        height: 14px;
+    }
+    
+    .nav-counter span {
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobiles */
+@media (max-width: 768px) {
+    .project-title {
+        font-size: 1.1rem;
+    }
+    
+    .project-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .nav-arrow {
+        margin: 0 40px;
+        width: 14px;  /* Match mobile img width */
+        height: 12px; /* Match mobile img height */
+    }
+    
+    .project-image-container {
+        height: auto;
+        aspect-ratio: 896 / 473;
+    }
+    
+    .nav-arrow img {
+        width: 14px;
+        height: 12px;
+    }
+    
+    .nav-counter span {
+        font-size: 0.8rem;
+    }
+}
+
+/* Très petits écrans */
+@media (max-width: 480px) {
+    .project-title {
+        font-size: 1rem;
+    }
+    
+    .project-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .nav-arrow {
+        margin: 0 20px;
+        width: 12px;  /* Match small mobile img width */
+        height: 10px; /* Match small mobile img height */
+    }
+    
+    .nav-arrow img {
+        width: 12px;
+        height: 10px;
+    }
+    
+    .nav-counter span {
+        font-size: 0.7rem;
+    }
+}
+
+/* ===== STYLES POUR LES BOUTONS DE NAVIGATION ===== */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 0 0;
+    background-color: transparent;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Ajustement pour les écrans jusqu'à 992px */
+@media (max-width: 992px) {
+    .button-container {
+        padding-top: 0;
+        margin-top: 0; /* Adjusted from -45px to prevent overlap with fixed header */
+    }
+}
+
+/* Ajustement pour les écrans jusqu'à 738px */
+@media (max-width: 738px) {
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .nav-button {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* Ajustement pour les écrans jusqu'à 342px */
+@media (max-width: 342px) {
+    .button-container {
+        transform: scale(0.9);
+        transform-origin: top center;
+    }
+    
+    .nav-button {
+        height: 19px; /* Légère réduction de la hauteur */
+        font-size: 10px; /* Réduction de la taille de police */
+        padding: 0 8px; /* Réduction du padding */
+    }
+}
+
+.nav-button {
+    background-color: #546280;
+    color: white !important;
+    border: none;
+    border-radius: 3px;
+    height: 21px;
+    font-size: 12px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: #092d63;
+}
+
+.nav-button.active {
+    background-color: #e9660e96;
+    font-weight: bold;
+}
+
+/* Styles pour la ligne de connexion */
+.connection-line {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.connection-line .line {
+    width: 30px;
+    height: 20px;
+    position: relative;
+}
+
+.connection-line .line::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: #586E91;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Styles pour les boutons de sous-catégorie */
+.subcategory-buttons {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.sub-button {
+    background-color: #3a4a6b !important; /* Couleur légèrement plus claire que les boutons principaux */
+    margin: 0 5px;
+}
+
+.sub-button:hover {
+    background-color: #092d63 !important; /* Même couleur que les boutons principaux au survol */
+    transition: background-color 0.3s ease; /* Transition fluide */
+}
+
+.sub-button.active {
+    background-color: #e9660e96 !important;
+}
+
+/* Ajustement pour mobile */
+@media (max-width: 768px) {
+    .subcategory-buttons {
+        transform: translateY(1mm);
+    }
+}
+
+/* Ajustement pour tablettes moyennes */
+@media (min-width: 739px) and (max-width: 768px) {
+    .button-container:not(.subcategory-buttons) {
+        margin-bottom: 4mm;
+    }
+    
+    .subcategory-buttons {
+        margin-top: 4mm;
+    }
+}
+
+/* Styles pour l'image Choose.svg */
+.choose-image-container {
+    display: none; /* Caché par défaut */
+    text-align: center;
+    margin: 80px 0 20px; /* Marge supérieure augmentée à 100px */
+}
+
+.choose-image {
+    max-width: 200px; /* Ajustez selon la taille souhaitée */
+    height: auto;
+}
+
+/* Afficher à partir de 739px (tablette et desktop) */
+@media (min-width: 739px) {
+    .choose-image-container {
+        display: block;
+    }
+}
+
+/* Ajustement pour tablettes */
+@media (min-width: 769px) and (max-width: 992px) {
+    .button-container:not(.subcategory-buttons) {
+        margin-bottom: 5mm; /* Augmenté de 2mm à 5mm */
+    }
+    
+    .subcategory-buttons {
+        margin-top: 5mm; /* Augmenté de 2mm à 5mm */
+        margin-bottom: 20px;
+    }
+}
+
+/* Styles pour l'image Choose2.svg - Version mobile uniquement */
+.choose2-image-container {
+    display: none; /* Caché par défaut */
+    text-align: center;
+    margin: 80px 0;
+    padding: 0 15px; /* Ajout d'un padding pour un meilleur espacement sur mobile */
+}
+
+.choose2-image {
+    max-width: 100%; /* S'adapte à la largeur de l'écran */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Afficher uniquement sur mobile (moins de 768px) */
+@media (max-width: 768px) {
+    .choose2-image-container {
+        display: block;
+    }
+    
+    /* Cacher l'image desktop sur mobile */
+    .choose-image-container {
+        display: none;
+    }
+}
+
+/* Style pour l'élément actif dans le menu hamburger */
+.dropdown-menu .submenu .active,
+.dropdown-menu .submenu .active a {
+    color: #e9660eea !important;
+    font-weight: bold;
+}
+
+/* S'assurer que le texte "Projets" reste blanc */
+.dropdown-menu > ul > li > a {
+    color: white !important;
+}
+
+/* ===== RESET ET STYLES DE BASE ===== */
+/* Réinitialisation des marges et paddings par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #272C3B; /* Default body background */
+}
+
+body.page-index {
+    /* Sur index.html, le body lui-même n'a pas besoin de fond si .hero-background-animations (z-index:0) le couvre */
+    /* Cependant, si .hero-background-animations était z-index: -1, body.page-index devrait être transparent. */
+    /* Pour z-index:0 de .hero-background-animations, le fond du body standard est OK. */
+}
+
+
+/* ===== EN-TÊTE ===== */
+/* Conteneur principal du header */
+.header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    position: relative;
+    z-index: 10; /* Doit être supérieur à .hero-background-animations (0) et .main-content (2) */
+    background-color: #272C3B; /* Default background color for header */
+}
+
+/* Header transparent spécifiquement pour la page d'accueil */
+body.page-index .header {
+    background: transparent !important; 
+    background-color: transparent !important; 
+}
+
+/* Styles pour la version desktop */
+@media (min-width: 993px) {
+    /* Sur la page d'accueil, le header fixe doit aussi être transparent */
+    body.page-index .header {
+        background-color: transparent !important; 
+    }
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #272C3B;
+    }
+    
+    .logo-text {
+        /* Grid column no longer needed as we're using absolute positioning */
+        text-align: center;
+        pointer-events: none;
+        font-size: 1.8rem;
+        color: #586E91;
+        white-space: nowrap;
+        /* No margin-left needed as we're using transform: translateX(-50%) */
+        z-index: 999; /* Ensure consistent z-index across all media queries */
+    }
+    
+    .hamburger-menu {
+        grid-column: 1;
+        justify-self: flex-start;
+        position: relative;
+        z-index: 1001; /* Above the logo text but below dropdown menu */
+    }
+    
+    .logo-container {
+        grid-column: 3;
+        justify-self: flex-end;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1001; /* Above the logo text but below dropdown menu */
+    }
+}
+
+/* Ajustement pour les écrans de 769px et plus */
+@media (min-width: 769px) {
+  /* Styles pour les éléments de contact avec une spécificité élevée */
+  .left-section .content-container .left-section > div > div > .email-address.contact-info,
+  .left-section [style*="flex-direction: column"] > .email-address.contact-info {
+    margin-top: 80px !important; /* Ajustez cette valeur */
+    display: block !important;
+  }
+  
+  .left-section .content-container .left-section > div > div > .phone-number,
+  .left-section [style*="flex-direction: column"] > .phone-number {
+    margin: 25px 0 0 !important; /* Ajustez cette valeur */
+    display: block !important;
+  }
+  
+  .left-section .content-container .left-section > div > div > .desktop-only,
+  .left-section [style*="flex-direction: column"] > .desktop-only {
+    margin-top: 82px !important; /* Ajustez cette valeur */
+    display: inline-block !important;
+  }
+  
+  :root {
+    /* Variables pour l'espacement - ajustez ces valeurs selon vos besoins */
+    --contact-email-margin-top: 50px;    /* Espace sous "N'hésitez pas à nous contacter" */
+    --contact-phone-margin: 15px 0 0;    /* Espace entre les numéros de téléphone */
+    --contact-return-margin-top: 50px;   /* Espace avant "Retour à l'accueil" */
+  }
+  
+  /* Application des espacements */
+  .left-section .email-address {
+    margin-top: var(--contact-email-margin-top) !important;
+  }
+  
+  .left-section .phone-number {
+    margin: var(--contact-phone-margin) !important;
+  }
+  
+  .left-section .desktop-only {
+    margin-top: var(--contact-return-margin-top) !important;
+  }
+}
+
+/* Ajustement spécifique pour les écrans entre 769px et 809px */
+@media (min-width: 769px) and (max-width: 809px) {
+  .left-section .content-container .left-section > div > div > .desktop-only,
+  .left-section [style*="flex-direction: column"] > .desktop-only {
+    margin-top: 115px !important; /* Augmentation de la marge supérieure */
+  }
+}
+
+/* Ajustement spécifique pour les écrans entre 809px et 913px */
+@media (min-width: 809px) and (max-width: 913px) {
+  .left-section .content-container .left-section > div > div > .desktop-only,
+  .left-section [style*="flex-direction: column"] > .desktop-only {
+    margin-top: 112px !important; /* Ajustement de la marge supérieure */
+  }
+}
+
+/* Ajustement spécifique pour les écrans entre 914px et 924px */
+@media (min-width: 914px) and (max-width: 924px) {
+  .left-section .content-container .left-section > div > div > .desktop-only,
+  .left-section [style*="flex-direction: column"] > .desktop-only {
+    margin-top: 108px !important; /* Ajustement de la marge supérieure */
+  }
+}
+
+/* Ajustement spécifique pour les écrans entre 925px et 992px */
+@media (min-width: 925px) and (max-width: 992px) {
+  .left-section .content-container .left-section > div > div > .desktop-only,
+  .left-section [style*="flex-direction: column"] > .desktop-only {
+    margin-top: 100px !important; /* Ajustement de la marge supérieure */
+  }
+}
+
+/* Ajustement spécifique pour les écrans entre 769px et 924px */
+@media (min-width: 769px) and (max-width: 924px) {
+  .left-section .email-address,
+  .left-section .phone-number {
+    font-size: calc(1.5rem + 1vw) !important; /* Taille de police réactive */
+  }
+}
+
+/* Styles pour la version tablette */
+@media (min-width: 577px) and (max-width: 992px) {
+    /* Application d'une échelle de 0.85 pour tous les éléments */
+    html {
+        font-size: 85%;
+    }
+    
+    .header {
+        padding: 1.2rem 1.5rem;
+        position: fixed; /* Make header fixed */
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #272C3B; /* Ensure background is consistent */
+    }
+    
+    .logo-text {
+        /* Adjusted for tablet */
+        font-size: 1.5rem !important;
+        top: 1.2rem; /* Fixed distance from top for tablet */
+    }
+    
+    .logo-container {
+        right: 1.5rem;
+        top: 1.2rem;
+        width: 25px;
+        height: 25px;
+    }
+    
+    .hamburger-menu {
+        grid-column: 1;
+        justify-self: flex-start;
+        position: relative;
+        z-index: 1001;
+    }
+    
+    .logo-container {
+        grid-column: 3;
+        justify-self: flex-end;
+        width: 25px;
+        height: 25px;
+        position: relative;
+        z-index: 1001;
+    }
+    
+    /* Ajustements spécifiques pour la page contact */
+    .email-address {
+        font-size: 2.1rem !important;
+    }
+    
+    /* Ajustement du formulaire */
+    form {
+        gap: 20px !important;
+    }
+}
+
+/* Styles pour les très petits écrans */
+@media (max-width: 347px) {
+  /* Réduction proportionnelle de la taille de police de base */
+  html {
+    font-size: 70% !important;
+  }
+  
+  /* Ajustement spécifique pour les éléments de contact */
+  .left-section .email-address,
+  .left-section .phone-number {
+    font-size: 1.8rem !important;
+  }
+  
+  /* Ajustement du bouton Retour à l'accueil */
+  .left-section .desktop-only {
+    font-size: 1.4rem !important;
+    padding: 8px 16px !important;
+  }
+  
+  /* Ajustement du titre de la section */
+  .left-section h1 {
+    font-size: 2.2rem !important;
+    margin-bottom: 15px !important;
+  }
+  
+  /* Ajustement du sous-titre */
+  .left-section p {
+    font-size: 1.4rem !important;
+    margin-bottom: 20px !important;
+  }
+  
+  /* Ajustement des textes généraux */
+  body, p, span, div, a {
+    font-size: 1.2rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  /* Ajustement des titres secondaires */
+  h2 {
+    font-size: 1.8rem !important;
+    margin: 15px 0 !important;
+  }
+  
+  /* Ajustement des titres tertiaires */
+  h3 {
+    font-size: 1.6rem !important;
+    margin: 12px 0 !important;
+  }
+  
+  /* Ajustement des textes dans les conteneurs */
+  .content-container p,
+  .content-container span,
+  .content-container div {
+    font-size: 1.3rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* Ajustement des liens */
+  a {
+    font-size: 1.3rem !important;
+  }
+  
+  /* Ajustement des espacements */
+  .left-section .content-container {
+    padding: 0 15px !important;
+  }
+  
+  /* Ajustement des marges pour les paragraphes */
+  p {
+    margin-bottom: 12px !important;
+  }
+}
+
+/* Styles pour la version mobile */
+@media (max-width: 576px) {
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #272C3B;
+    }
+    
+    .logo-text {
+        /* Fixed positioning for mobile */
+        font-size: 1.6rem; /* Slightly smaller for mobile */
+        top: 1.5rem; /* Fixed distance from top */
+    }
+    
+    .hamburger-menu {
+        grid-column: 1;
+        justify-self: flex-start;
+        position: relative;
+        z-index: 1001;
+    }
+    
+    .logo-container {
+        right: 2rem;
+        top: 1.5rem;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* ===== MENU HAMBURGER ===== */
+/* Bouton de menu pour la version mobile */
+.hamburger-menu {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.hamburger-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s ease;
+}
+
+.hamburger-icon.hover-icon {
+    opacity: 0;
+}
+
+.hamburger-menu:hover .default-icon {
+    opacity: 0;
+}
+
+.hamburger-menu:hover .hover-icon {
+    opacity: 1;
+}
+
+/* Styles pour le menu déroulant */
+.dropdown-menu {
+    display: none;
+    position: fixed; /* Changement de absolute à fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 300px; /* Largeur maximale du menu */
+    background-color: #3B455D;
+    z-index: 1000; /* Above the logo text (999) */
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    height: 100vh; /* Hauteur complète de la fenêtre */
+    overflow-y: auto; /* Permet de faire défiler si le menu est trop long */
+    margin: 0;
+    padding: 0;
+    padding-top: 70px; /* Espace pour le header */
+    box-sizing: border-box;
+}
+
+.dropdown-menu.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+}
+
+.dropdown-menu > ul > li {
+    padding: 0;
+}
+
+.dropdown-menu > ul > li > a {
+    padding: 0.75rem 2rem;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-menu > ul > li > a:hover {
+    background-color: #2d3648;
+}
+
+.dropdown-menu a {
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Jura', sans-serif;
+    font-size: 1.1rem;
+    display: block;
+}
+
+/* Styles pour le sous-menu */
+.submenu {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #2d3648;
+    margin: 0 -2rem;
+    padding: 0 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.has-submenu.active .submenu {
+    max-height: 500px;
+    padding: 0.5rem 2rem 1rem;
+    opacity: 1;
+    visibility: visible;
+}
+
+.submenu li {
+    padding: 0.5rem 0 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    color: #586E91;
+}
+
+/* Style pour les éléments actifs dans le menu */
+.dropdown-menu > ul > li.active > a,
+.dropdown-menu > ul > li > a.active,
+.submenu li a.active {
+    color: #FF7F50 !important; /* Orange pour les éléments actifs */
+    font-weight: 600;
+}
+
+/* Style de l'icône de flèche */
+.menu-item .arrow-icon {
+    font-size: 14px;
+    color: #ffffff;
+    transition: transform 0.2s linear; /* Animation uniquement pour la rotation */
+    display: inline-block !important;
+    margin-left: auto;
+    position: absolute;
+    right: 2.5rem; /* Position décalée vers la gauche */
+    top: 39.2mm; /* Décalage de 1mm vers le bas */
+}
+
+/* Ajustement de la position de la flèche en version tablette */
+@media (min-width: 577px) and (max-width: 992px) {
+    .menu-item .arrow-icon {
+        top: 35.2mm; /* Remontée de 2mm par rapport à la version desktop */
+    }
+}
+
+/* Rotation de la flèche quand le menu est actif */
+.has-submenu.active .arrow-icon {
+    transform: rotate(180deg);
+}
+
+/* Sous-menu */
+.submenu {
+    display: none;
+    list-style: none;
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+}
+
+.has-submenu.active .submenu {
+    display: block;
+}
+
+.submenu a {
+    display: block;
+    padding: 0.75rem 0;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.submenu a:hover {
+    color: #586E91;
+}
+
+.bar {
+    width: 100%;
+    height: 2.95px;
+    background-color: #586E91;
+    transition: all 0.3s ease;
+}
+
+/* Logo texte */
+/* ===== STYLES DU TEXTE DU LOGO ===== */
+.logo-text {
+    font-family: 'Jura', sans-serif; /* Application de la police Jura */
+    font-size: 1.8rem;
+    font-weight: 600; /* Poids de police plus épais pour une meilleure lisibilité */
+    color: #586E91;
+    letter-spacing: 2px;
+    text-transform: uppercase; /* Mise en majuscules pour un style plus cohérent */
+    transition: color 0.3s ease;
+    position: fixed; /* Changed to fixed to prevent any movement */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Perfect centering */
+    top: 1.5rem; /* Fixed distance from top */
+    z-index: 999; /* Below the dropdown menu (1000) but above other content */
+    margin: 0;
+    padding: 0;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
+/* .logo-text:hover {
+    color: #666;
+} */
+
+/* ===== CONTENEUR DU LOGO ===== */
+/* Style du conteneur de l'icône du logo */
+.logo-container {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 2rem;
+    top: 1.5rem;
+    z-index: 1001;
+}
+
+.logo {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* ===== CONTENU PRINCIPAL ===== */
+/* Section principale de la page */
+.main-content {
+    flex: 1;
+    position: relative; /* Est déjà relative, ce qui est bien */
+    z-index: 2; /* Doit être supérieur à .hero-background-animations (0) */
+    margin-top: 80px; 
+    background-color: #272C3B; /* Fond par défaut pour les autres pages */
+}
+body.page-index .main-content {
+    background-color: transparent; /* Pour voir .hero-background-animations sur index.html */
+}
+
+/* ===== PIED DE PAGE ===== */
+/* Style du footer */
+.footer {
+    padding: 1.5rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 5; /* Doit être supérieur à .hero-background-animations (0) */
+    background-color: #272C3B; /* Fond par défaut pour le footer */
+}
+body.page-index .footer {
+    background-color: transparent !important; /* Footer transparent sur index.html */
+}
+/* Ajustements pour la lisibilité du contenu du footer sur index.html */
+body.page-index .footer .separator {
+    background-color: rgba(88, 110, 145, 0.4); /* Séparateur plus visible */
+}
+body.page-index .footer .footer-text {
+    /* text-shadow: 0 0 3px rgba(0,0,0,0.3); /* Optionnel pour lisibilité */
+}
+
+
+/* ===== VERSION MOBILE ===== */
+/* Ajustements spécifiques pour les écrans mobiles */
+@media (max-width: 576px) {
+    .footer {
+        padding: 1rem;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: transparent;
+    }
+
+    /* Ajouter un espace en bas du contenu principal pour éviter que le footer ne cache le contenu */
+    .main-content {
+        padding: 80px 0;
+        margin-top: 60px; /* Hauteur du header */
+    }
+}
+
+.separator {
+    height: 1px;
+    background-color: #586E91;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.footer:hover .separator {
+    background-color: #586E91;
+}
+
+.footer-text {
+    color: #586E91;
+    font-family: 'Jura', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.footer:hover .footer-text {
+    color: #586E91;
+}
+
+
+/* ===== ARRIÈRE-PLAN VIDÉO - SUPPRIMÉ ===== */
+/* Les styles pour .video-background et .video-background video ont été supprimés. */
+
+/* ===== VERSION BUREAU ===== */
+/* Styles spécifiques pour les écrans de bureau */
+@media (min-width: 769px) {
+    /* Logo text should always be visible but with lower z-index than dropdown menu */
+    .dropdown-menu.active ~ .logo-text {
+        z-index: 999; /* Below dropdown menu */
+    }
+    .hamburger-menu {
+        margin-top: 5px; /* Décale légèrement le menu hamburger vers le bas */
+    }
+    
+    /* Styles .video-background .desktop-video et .mobile-video supprimés */
+    .logo-text {
+        background: transparent;
+    }
+}
+
+/* ===== VERSION MOBILE ===== */
+/* Styles spécifiques pour les appareils mobiles */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        margin-top: 5px; /* Décale légèrement le menu hamburger vers le bas */
+    }
+    
+    /* Styles .video-background .mobile-video et .desktop-video supprimés ici aussi */
+}
+
+.close-menu {
+  position: absolute;
+  top: 1.5rem;
+  left: 2rem;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #586E91;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 2100;
+  transition: color 0.2s, background 0.2s;
+  border-radius: 50%;
+}
+.close-menu:hover {
+  background: #2d3648;
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .close-menu {
+    top: 1.5rem;
+    left: 2rem;
+    width: 30px;
+    height: 30px;
+    font-size: 2rem;
+  }
+}
+
+/* Styles pour le bouton d'envoi du formulaire de contact */
+form button[type="submit"] {
+    background-color: #586E91 !important;
+    color: white !important;
+    transition: all 0.3s ease !important;
+}
+
+form button[type="submit"]:hover {
+    background-color: #e9660e !important; /* Couleur orange comme itamax@orange.sn */
+}
+
+form button[type="submit"] span,
+form button[type="submit"] span span {
+    color: white !important;
+}
+
+/* ===== HERO WELCOME SECTION STYLES ===== */
+.hero-welcome {
+    position: relative; /* For positioning background animations */
+    width: 100%;
+    height: 85vh; /* Adjust as needed, make it substantial */
+    min-height: 500px; /* Minimum height for smaller viewports */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #fff; /* Default text color for this section */
+    overflow: hidden; /* To contain background animations if they go wild */
+    /* Background will be handled by video and .hero-background-animations */
+}
+
+.hero-background-animations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Couvre toute la hauteur du viewport */
+    width: 100vw; /* Couvre toute la largeur du viewport */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Au-dessus du fond du body, mais potentiellement sous d'autres contenus */
+    overflow: hidden; /* Essentiel pour les animations internes */
+}
+
+/* Formes flottantes plus visibles et plus dynamiques */
+.hero-background-animations .shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: 0.4; /* Opacité augmentée */
+    animation: float 8s ease-in-out infinite; /* Animation plus rapide */
+}
+
+.hero-background-animations .shape1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(88, 110, 145, 0.8) 0%, rgba(39, 44, 59, 0) 70%);
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.hero-background-animations .shape2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(233, 102, 14, 0.6) 0%, rgba(39, 44, 59, 0) 70%);
+    bottom: 10%;
+    right: 10%;
+    animation-delay: -2s;
+    animation-duration: 10s; /* Durée réduite */
+}
+
+.hero-background-animations .shape3 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(100, 120, 150, 0.7) 0%, rgba(39, 44, 59, 0) 70%);
+    top: 50%;
+    right: 30%;
+    animation-delay: -4s;
+    animation-duration: 12s; /* Durée réduite */
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(30px, -20px) scale(1.05);
+    }
+    50% {
+        transform: translate(0, -30px) scale(0.95);
+    }
+    75% {
+        transform: translate(-30px, 0) scale(1.05);
+    }
+}
+
+
+
+/* Formes flottantes pour l'arrière-plan */
+.hero-background-animations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none; /* Permet les clics à travers cet élément */
+}
+
+/* Suppression des anciens styles de lignes */
+.hero-background-animations::before,
+.hero-background-animations::after {
+    content: none; /* Effectively removes them */
+}
+
+
+.hero-content-wrapper {
+    position: relative;
+    z-index: 2; /* Above background animations */
+    max-width: 800px; /* Limit width of text content for readability */
+    padding: 20px;
+    background-color: rgba(39, 44, 59, 0.3); /* Very subtle semi-transparent bg for text readability if bg is busy */
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+}
+
+.hero-title {
+    font-family: 'Jura', sans-serif;
+    font-size: 2.8rem; /* Base size */
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0,0,0,0.3);
+    animation: fadeInSlideUp 1s ease-out 0.5s forwards;
+    opacity: 0; /* Start hidden for animation */
+}
+
+.hero-subtitle {
+    font-family: 'Jura', sans-serif; /* Or Arial if Jura is too stylized for paragraph */
+    font-size: 1.2rem; /* Base size */
+    animation: fadeInSlideUp 1s ease-out 0.9s forwards; /* Delayed start */
+    opacity: 0; /* Start hidden for animation */
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #e0e0e0; /* Slightly off-white for subtitle */
+    text-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.hero-cta-button {
+    font-family: 'Jura', sans-serif;
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #e9660e; /* ITAMAX Orange */
+    border: 2px solid transparent; /* For the animated border later */
+    border-radius: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* For pseudo-elements for animation */
+    overflow: hidden; /* To contain the glowing effect */
+    animation: fadeInScaleUp 0.8s ease-out 1.5s forwards; /* Delayed start */
+    opacity: 0; /* Start hidden for animation */
+    transform: scale(0.9); /* Start slightly smaller for scale up animation */
+}
+
+.hero-cta-button::before { /* Glowing border effect */
+    content: '';
+    position: absolute;
+    top: -3px; left: -3px; right: -3px; bottom: -3px; /* Slightly larger than button */
+    z-index: -1;
+    background: conic-gradient(from 90deg at 50% 50%, #e9660e, #ffeb3b, #e9660e, #ff8c00, #e9660e);
+    border-radius: 8px; /* Slightly larger than button's border-radius */
+    animation: rotateGradient 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.hero-cta-button:hover::before,
+.hero-cta-button:focus::before {
+    opacity: 1; /* Show glow on hover/focus */
+}
+
+
+.hero-cta-button:hover,
+.hero-cta-button:focus {
+    background-color: #d05a0c; /* Darker orange */
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(233, 102, 14, 0.2);
+    color: #fff;
+}
+
+/* Adjustments for existing home content if needed */
+.existing-home-content {
+    /* Example: if hero section is full height, this might need margin-top */
+    /* padding-top: 40px; */ /* Or some other adjustment */
+}
+
+/* Ensure subsequent content on index.html has an opaque background */
+.existing-home-content {
+    background-color: #272C3B; /* Opaque background for this specific section */
+    padding: 40px 15px; /* Add some spacing */
+    position: relative; /* To ensure it respects z-index stacking if needed, though main-content should handle it */
+    z-index: 3; /* Just to be sure it's above the video and hero background animations, but below hero-content-wrapper if they overlapped */
+}
+
+/* Keyframes for text and button entrance animations */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes rotateGradient {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Responsive adjustments for Hero Welcome Section */
+@media (max-width: 992px) { /* Tablet */
+    .existing-home-content {
+        padding: 30px 15px;
+    }
+    .hero-welcome {
+        height: 75vh;
+        min-height: 450px;
+    }
+    .hero-title {
+        font-size: 2.4rem;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    .hero-cta-button {
+        padding: 10px 24px;
+        font-size: 1rem;
+    }
+    .hero-background-animations .shape1 { width: 250px; height: 250px; }
+    .hero-background-animations .shape2 { width: 350px; height: 350px; }
+    .hero-background-animations .shape3 { width: 200px; height: 200px; }
+}
+
+@media (max-width: 768px) { /* Smaller Tablet / Large Mobile */
+    .hero-welcome {
+        height: auto; /* Let content define height */
+        min-height: 70vh; /* Still want it to be substantial */
+        padding: 60px 20px; /* More vertical padding */
+    }
+     .hero-content-wrapper {
+        padding: 15px;
+        background-color: rgba(39, 44, 59, 0.5); /* Slightly more opaque for readability */
+    }
+    .hero-title {
+        font-size: 2rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+    .hero-background-animations .shape1 { width: 200px; height: 200px; left: 5%; }
+    .hero-background-animations .shape2 { width: 300px; height: 300px; right: 5%; }
+    .hero-background-animations .shape3 { display: none; } /* Hide one shape on smaller screens */
+}
+
+
+@media (max-width: 480px) { /* Mobile */
+    .hero-welcome {
+        min-height: 60vh;
+        padding: 40px 15px;
+    }
+    .hero-title {
+        font-size: 1.7rem;
+        margin-bottom: 15px;
+    }
+    .hero-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    .hero-cta-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    .hero-background-animations .shape1 { width: 150px; height: 150px; }
+    .hero-background-animations .shape2 { width: 250px; height: 250px; }
+}
+
+@media (max-width: 480px) { /* Mobile */
+    .existing-home-content {
+        padding: 20px 15px;
+    }
+}
+
+/* ===== GSAP CAROUSEL STYLES (for gsap.html) ===== */
+.carousel-viewport {
+    width: 100%; /* Takes full width of its container */
+    /* max-width: none; */ /* No longer needed if width is 100% of a constrained parent */
+    margin: 50px 0; /* Vertical margin, no horizontal auto margin */
+    overflow: hidden;
+    /* border: 2px solid #444; */ /* Removed temporary border */
+    /* padding: 10px; */ /* Padding might affect calculations, remove or adjust if needed */
+    /* background-color: #333; */ /* Removed temporary background */
+    /* For a truly full-width screen experience, the PARENT of .carousel-viewport might need to be 100vw */
+    /* and .carousel-viewport itself might need to be carefully positioned if header/footer are present */
+    /* On gsap.html, .main-content-gsap-test is 100% width already. */
+}
+
+.carousel-track {
+    display: flex;
+    /* La largeur sera calculée par JS ou sera implicitement la somme des cartes + marges */
+    /* Pour le drag GSAP, on ne met souvent pas de transition CSS ici, GSAP s'en charge */
+}
+
+.carousel-card {
+    width: 280px; /* Fixed width for cards */
+    height: 380px; /* Fixed height for cards */
+    margin-right: 20px;
+    background-color: #555;
+    border-radius: 8px;
+    flex-shrink: 0; /* Important pour que les cartes ne rétrécissent pas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Si l'image est plus grande que la carte */
+    transform-origin: center center; /* Assure que l'échelle se fait depuis le centre */
+    /* On pourrait ajouter une transition CSS ici pour transform, mais GSAP s'en charge mieux */
+    /* transition: transform 0.2s ease-out, opacity 0.2s ease-out; */
+}
+
+.carousel-card:last-child {
+    margin-right: 0;
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block; /* Enlève l'espace sous l'image si elle était inline */
+    border-radius: 6px; /* Léger arrondi si l'image touche les bords de la carte */
+}
+
+
+/* ===== LIGHTBOX MODAL STYLES (ALL SCREENS) ===== */
+body.lightbox-active {
+    overflow: hidden; /* Prevent scrolling of background page */
+}
+
+.lightbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Slightly darker for better focus */
+    backdrop-filter: blur(4px); /* Slightly less blur can be performant */
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.95); /* Start slightly scaled down */
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease; /* Add transform to transition */
+    padding: 10px; /* Add some padding for small screens */
+    box-sizing: border-box;
+}
+
+.lightbox-modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1); /* Scale to normal size when active */
+}
+
+.lightbox-content {
+    position: relative;
+    background-color: #272C3B;
+    padding: 15px; /* Base padding */
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    max-width: 95vw; /* General max width */
+    max-height: 95vh; /* General max height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Prevent content spill on small heights */
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 5px;   /* Closer to edge for smaller screens */
+    right: 10px; /* Closer to edge for smaller screens */
+    background: none; /* Consider a very subtle background for touch */
+    border: none;
+    color: #fff;
+    font-size: 2rem; /* Adjusted for mobile */
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px; /* Make tap target slightly bigger */
+    z-index: 2010;
+    /*-webkit-tap-highlight-color: transparent; Prevent highlight on tap */
+}
+
+.lightbox-close:hover {
+    color: #ccc;
+}
+
+.lightbox-project-title {
+    font-family: 'Jura', sans-serif;
+    font-size: 1.2rem; /* Base size for mobile */
+    color: #fff;
+    text-align: center;
+    margin-bottom: 8px;
+    line-height: 1.25;
+    max-height: calc(1.25em * 3); /* Max 3 lines based on font-size and line-height */
+    overflow: hidden;
+    padding: 0 5px; /* Prevent text touching edges */
+}
+
+.lightbox-image-container {
+    width: 100%; /* Take full width of content box */
+    flex-grow: 1; /* Allow container to take available vertical space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    position: relative; /* Kept for potential future use */
+    overflow: hidden; /* Important for image not to overflow its container */
+}
+
+.lightbox-image { 
+    /* This class is now ALONE on the single image in lightbox. */
+    /* It needs full sizing and the transition. */
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    border-radius: 3px; 
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Styles for .lightbox-image-display, .active-img, .preload-img are no longer needed for the lightbox */
+/* .lightbox-image-display { ... } */
+/* .lightbox-image-display.active-img { ... } */
+/* .lightbox-image-display.preload-img { ... } */
+
+
+.lightbox-image-subtitle {
+    font-family: 'Jura', sans-serif;
+    font-size: 0.9rem; /* Base size for mobile */
+    color: #bbb; /* Slightly lighter */
+    text-align: center;
+    margin-bottom: 10px;
+    line-height: 1.25;
+    max-height: calc(1.25em * 2); /* Max 2 lines */
+    overflow: hidden;
+    padding: 0 5px;
+}
+
+.lightbox-nav {
+    display: flex;
+    justify-content: space-between; /* This will push arrows to edges */
+    align-items: center;
+    width: 100%;
+    padding: 0; /* Let arrows define their own padding/tap area */
+    box-sizing: border-box;
+}
+
+.lightbox-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px; /* Increase tap area */
+    margin: 0; /* Remove fixed margins */
+    /*-webkit-tap-highlight-color: transparent;*/
+}
+
+.lightbox-arrow img {
+    width: 20px; /* Base size for mobile */
+    height: 17px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    display: block; /* Prevents extra space under img */
+}
+
+.lightbox-arrow:hover img {
+    opacity: 0.8;
+}
+
+/* Tablet Adjustments */
+@media (min-width: 577px) {
+    .lightbox-content {
+        padding: 20px;
+    }
+    .lightbox-close {
+        font-size: 2.2rem;
+        top: 8px;
+        right: 12px;
+    }
+    .lightbox-project-title {
+        font-size: 1.4rem; /* Tablet title size */
+        margin-bottom: 10px;
+    }
+    .lightbox-image-subtitle {
+        font-size: 1.0rem; /* Tablet subtitle size */
+        margin-bottom: 12px;
+    }
+    .lightbox-arrow img {
+        width: 22px;
+        height: 19px;
+    }
+}
+
+/* Desktop Adjustments (styles from original desktop-only query, slightly refined) */
+@media (min-width: 993px) {
+    .lightbox-content {
+        max-width: 90vw;
+        max-height: 90vh;
+        padding: 25px; /* More padding for desktop */
+    }
+    .lightbox-close {
+        top: 10px;
+        right: 15px;
+        font-size: 2.5rem;
+    }
+    .lightbox-project-title {
+        font-size: 1.6rem;
+        margin-bottom: 12px;
+    }
+    .lightbox-image-container {
+         /* Allow more flexible height based on available space in lightbox-content */
+        max-height: calc(90vh - 150px); /* Approximate height for titles, subs, nav */
+        margin-bottom: 12px;
+    }
+    .lightbox-image-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+    .lightbox-arrow {
+        padding: 10px 20px; /* Larger padding for desktop */
+    }
+    .lightbox-arrow img {
+        width: 24px;
+        height: 20px;
+    }
+}

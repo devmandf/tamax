@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Carrousel GSAP - ITAMAX</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        /* Styles temporaires pour cette page de test si besoin */
+        body {
+            background: #242A3A;
+            color: #fff;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden; /* Empêche le défilement horizontal */
+            touch-action: pan-y; /* Permet le défilement vertical mais pas horizontal */
+        }
+        .header {
+            width: 100%;
+            padding: 20px 0;
+            background: #242A3A;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+
+        }
+        .hamburger-menu {
+            position: absolute;
+            top: 20px;
+            left: 20px; /* Passe à gauche */
+            right: auto;
+            cursor: pointer;
+        }
+        .hamburger-icon {
+            width: 30px;
+            height: 30px;
+        }
+        .close-menu {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        /* Suppression des styles en dur qui écrasent styles.css */
+        .logo-link {
+            text-align: center;
+            cursor: pointer;
+        }
+        .logo-text {
+            font-size: 2rem;
+            margin: 0;
+            color: #6A82A2;
+            font-family: 'Jura', sans-serif;
+            letter-spacing: 0.1em;
+            font-weight: bold;
+        }
+        .logo-container {
+            text-align: center;
+            cursor: pointer;
+        }
+        .logo {
+            max-width: 100%;
+            height: auto;
+        }
+        footer {
+            width: 100%;
+            text-align: center;
+            color: #3B4151;
+            font-size: 1.2rem;
+            padding: 30px 0 20px 0;
+            font-family: 'Jura', sans-serif;
+            background: #242A3A;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+
+        }
+        .main-content-gsap-test {
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            max-width: 100vw;
+            padding: 120px 0 100px; /* Ajout d'un padding pour compenser le header/footer fixes */
+            margin: 0;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .carousel-container {
+            width: 100vw;
+            max-width: 1500px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+        }
+        .carousel-viewport {
+            width: 100vw;
+            max-width: 1500px;
+            height: 520px;
+            overflow: visible;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-track {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .carousel-card {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            transition: all 0.6s cubic-bezier(.4,0,.2,1);
+            cursor: grab;
+        }
+    </style>
+</head>
+<body>
+    <!-- Indicateur de chargement circulaire -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-container">
+            <div class="loading-circle">
+                <svg class="loading-circle-bg" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="54" fill="none" stroke="#e9660e" stroke-width="6" stroke-opacity="0.2"/>
+                </svg>
+                <svg class="loading-circle-progress" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="54" fill="none" stroke="#e9660e" stroke-width="6" stroke-linecap="round" stroke-dasharray="339.292" stroke-dashoffset="339.292"/>
+                </svg>
+                <div class="loading-percent">0%</div>
+            </div>
+            <div class="loading-text">Chargement du carrousel...</div>
+        </div>
+    </div>
+    <header class="header">
+      <div class="hamburger-menu">
+        <img src="boutons/HamburMenu.svg" alt="Menu" class="hamburger-icon default-icon">
+        <img src="boutons/HamburMenuHover.svg" alt="Menu" class="hamburger-icon hover-icon">
+      </div>
+      <button class="close-menu" aria-label="Fermer le menu" style="display:none">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <nav class="dropdown-menu">
+        <ul>
+          <li>
+            <a href="index.html" class="menu-item">
+              Accueil
+            </a>
+          </li>
+          <li class="has-submenu">
+            <a href="#" class="menu-item">
+              Projets
+              <i class="fas fa-chevron-down arrow-icon"></i>
+            </a>
+            <ul class="submenu">
+              <li><a href="amo.html">Assistance à Maîtrise d'Ouvrage Déléguée (AMO)</a></li>
+              <li><a href="appins.html">Appuis institutionnels</a></li>
+              <li><a href="peat.html">Projets Études Architecturales et Techniques</a></li>
+            </ul>
+          </li>
+          <li class="active">
+            <a href="gsap.html" class="menu-item active">
+              Carrousel
+            </a>
+          </li>
+          <li>
+            <a href="contact.html" class="menu-item">
+              Contact
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="logo-link" onclick="window.location.href='index.html'" style="cursor: pointer;">
+        <img src="boutons/itamaxTextHeader.svg" alt="ITAMAX" class="logo-text">
+      </div>
+      <div class="logo-container" onmouseover="this.querySelector('img').src='boutons/logo-itamaxHover.svg'" onmouseout="this.querySelector('img').src='boutons/logo-itamax.svg'" onclick="window.location.href='index.html'" style="cursor: pointer;">
+        <img src="boutons/logo-itamax.svg" alt="Logo ITAMAX" class="logo">
+      </div>
+    </header>
+    <main class="main-content-gsap-test">
+      <div class="carousel-container">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <!-- Les cartes seront ajoutées dynamiquement par JavaScript -->
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer style="width:100%;text-align:center;color:#3B4151;font-size:1.2rem;padding:30px 0 20px 0;font-family:'Jura',sans-serif;background:transparent;">
+      © 2025 ITAMAX Architecture. Tous droits réservés.
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/Draggable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+    // Ajouter la classe loading au body dès le chargement du script
+    document.body.classList.add('loading');
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        // Données des cartes (toutes les images du dossier /gsap, sans doublons inutiles)
+        const cardsData = [
+            { img: 'imagesprojets/Abattoirs-bovins-et-ovins-(01).webp' },
+            { img: 'imagesprojets/Abattoirs-bovins-et-ovins-(02).webp' },
+            { img: 'imagesprojets/Abattoirs-bovins-et-ovins-(03).webp' },
+            { img: 'imagesprojets/abattoirstivaouane01.webp' },
+            { img: 'imagesprojets/abattoirstivaouane02.webp' },
+            { img: 'imagesprojets/abattoirstivaouane03.webp' },
+            { img: 'imagesprojets/CFPT-B1.webp' },
+            { img: 'imagesprojets/CFPT-B2.webp' },
+            { img: 'imagesprojets/CFPT-B3.webp' },
+            { img: 'imagesprojets/CFPT-B4.webp' },
+            { img: 'imagesprojets/CHNP01.webp' },
+            { img: 'imagesprojets/CHNP02.webp' },
+            { img: 'imagesprojets/CHNP03.webp' },
+            { img: 'imagesprojets/Constructiondes LYNAQEde Sédhiou(01).webp' },
+            { img: 'imagesprojets/Constructiondes LYNAQEde Sédhiou(02).webp' },
+            { img: 'imagesprojets/CS-Yeumbeul01.webp' },
+            { img: 'imagesprojets/CS-Yeumbeul02.webp' },
+            { img: 'imagesprojets/Hoteldeville01.webp' },
+            { img: 'imagesprojets/Hoteldeville02.webp' },
+            { img: 'imagesprojets/Immeuble-R+4-(01).webp' },
+            { img: 'imagesprojets/Immeuble-R+4-(02).webp' },
+            { img: 'imagesprojets/Immeuble-R+4-(03).webp' },
+            { img: 'imagesprojets/MEPN01.webp' },
+            { img: 'imagesprojets/MEPN02.webp' },
+            { img: 'imagesprojets/MEPN03.webp' },
+            { img: 'imagesprojets/ONFPSTLOUIS01.webp' },
+            { img: 'imagesprojets/ONFPSTLOUIS02.webp' },
+            { img: 'imagesprojets/ONFPSTLOUIS03.webp' },
+            { img: 'imagesprojets/ONFPSTLOUIS04.webp' },
+            { img: 'imagesprojets/projet-amo-feltiplex-01sur02.webp' },
+            { img: 'imagesprojets/projet-amo-feltiplex-02sur02.webp' },
+            { img: 'imagesprojets/projet-amo-garefretlss-01sur01.webp' },
+            { img: 'imagesprojets/projet-appins-CECCBADAbidjan.webp' },
+            { img: 'imagesprojets/projet-appins-Djibouti.webp' },
+            { img: 'imagesprojets/projet-BM-Kinshasa.webp' },
+            { img: 'imagesprojets/R+1-en-R+3-Grand-Yoff-(01).webp' },
+            { img: 'imagesprojets/R+1-en-R+3-Grand-Yoff-(02).webp' },
+            { img: 'imagesprojets/R+1-en-R+3-Grand-Yoff-(03).webp' },
+            { img: 'imagesprojets/R+3-VIP-Lounge-Almadie-(01).webp' },
+            { img: 'imagesprojets/R+3-VIP-Lounge-Almadie-(02).webp' },
+            { img: 'imagesprojets/R+3-VIP-Lounge-Almadie-(03).webp' },
+            { img: 'imagesprojets/R+5-Keur-Mbaye-Fall-(01).webp' },
+            { img: 'imagesprojets/R+5-Keur-Mbaye-Fall-(02).webp' },
+            { img: 'imagesprojets/R+5-Keur-Mbaye-Fall-(03).webp' },
+            { img: 'imagesprojets/R+7-Patte-d-Oie-(01).webp' },
+            { img: 'imagesprojets/R+7-Patte-d-Oie-(02).webp' },
+            { img: 'imagesprojets/SDEPAGuinguinéo01.webp' },
+            { img: 'imagesprojets/SDEPAGuinguinéo02.webp' },
+            { img: 'imagesprojets/SDEPAGuinguinéo03.webp' },
+            { img: 'imagesprojets/sopasen01.webp' },
+            { img: 'imagesprojets/Villa-300-m2-(01).webp' },
+            { img: 'imagesprojets/Villa-300-m2-(02).webp' },
+            { img: 'imagesprojets/Villa-300-m2-(03).webp' },
+            { img: 'imagesprojets/Villa-Fatick-(01).webp' },
+            { img: 'imagesprojets/Villa-Fatick-(02).webp' },
+            { img: 'imagesprojets/Villa-Fatick-(03).webp' },
+            { img: 'imagesprojets/Villa-grand-standing-(01).webp' },
+            { img: 'imagesprojets/Villa-grand-standing-(02).webp' },
+            { img: 'imagesprojets/Villa-grand-standing-(03).webp' },
+            { img: 'imagesprojets/Villa-grand-standing-(04).webp' },
+            { img: 'imagesprojets/Villa-grand-standing-(05).webp' },
+            { img: 'imagesprojets/Villa-grand-standing-(06).webp' },
+            { img: 'imagesprojets/Villa-Ouest-Foire-(01).webp' },
+            { img: 'imagesprojets/Villa-Ouest-Foire-(02).webp' },
+            { img: 'imagesprojets/Villa-Type-Nord-Américaine-(01).webp' },
+            { img: 'imagesprojets/Villa-Type-Nord-Américaine-(02).webp' },
+            { img: 'imagesprojets/Villa-Type-Nord-Américaine-(03).webp' },
+            { img: 'imagesprojets/Visitedechantier avecleCMUdela BanqueMondiale.webp' }
+        ];
+        const track = document.querySelector('.carousel-track');
+        let currentIndex = 0;
+
+        // Créer les cartes
+        function createCards() {
+            track.innerHTML = '';
+            cardsData.forEach((card, i) => {
+                const div = document.createElement('div');
+                div.className = 'carousel-card';
+                div.dataset.index = i;
+                div.style.position = 'absolute';
+                div.style.display = 'flex';
+                div.style.flexDirection = 'column';
+                div.style.alignItems = 'center';
+                div.style.justifyContent = 'flex-end';
+                div.style.borderRadius = '30px';
+                div.style.boxShadow = '0 10px 40px rgba(0,0,0,0.25)';
+                div.style.background = 'transparent';
+                div.style.transition = 'all 0.6s cubic-bezier(.4,0,.2,1)';
+                div.style.cursor = 'grab';
+                const fileName = card.img.split('/').pop();
+                const titleWithoutExt = fileName.split('.').slice(0, -1).join('.');
+                div.innerHTML = `<img src="${card.img}" alt="${titleWithoutExt}" style="width:100%;height:100%;object-fit:cover;border-radius:30px;">` +
+                    `<span style="position:relative;display:block;width:100%;text-align:center;font-size:1.2rem;font-family:'Jura',sans-serif;font-weight:bold;color:#fff;background:transparent;padding:10px 0 5px 0;letter-spacing:0.03em;">${titleWithoutExt}</span>`;
+                track.appendChild(div);
+            });
+            updateCards();
+        }
+
+        // Mettre à jour la position et la taille des cartes
+        function updateCards() {
+            const cards = Array.from(track.children);
+            const viewport = document.querySelector('.carousel-viewport');
+            const viewportWidth = viewport.offsetWidth;
+            const cardWidth = 600;
+            const cardHeight = 500;
+            const centerWidth = 1050; // réduit
+            const centerHeight = 650; // réduit
+            const offsetPercent = 0.35;
+            // Center
+            const center = cards[currentIndex % cards.length];
+            center.style.opacity = '1';
+            center.style.zIndex = '3';
+            center.style.pointerEvents = 'auto';
+            center.style.width = centerWidth + 'px';
+            center.style.height = centerHeight + 'px';
+            center.style.left = '50%';
+            center.style.top = '50%';
+            center.style.transform = 'translate(-50%,-50%) scale(1)';
+            // Right
+            const right = cards[(currentIndex + 1) % cards.length];
+            right.style.opacity = '0.7';
+            right.style.zIndex = '2';
+            right.style.pointerEvents = 'none';
+            right.style.width = cardWidth + 'px';
+            right.style.height = cardHeight + 'px';
+            right.style.left = (viewportWidth - cardWidth * offsetPercent) + 'px';
+            right.style.top = '50%';
+            right.style.transform = 'translate(0,-50%) scale(0.7)';
+            // Left
+            const left = cards[(currentIndex + cards.length - 1) % cards.length];
+            left.style.opacity = '0.7';
+            left.style.zIndex = '2';
+            left.style.pointerEvents = 'none';
+            left.style.width = cardWidth + 'px';
+            left.style.height = cardHeight + 'px';
+            left.style.left = (-cardWidth * (1 - offsetPercent)) + 'px';
+            left.style.top = '50%';
+            left.style.transform = 'translate(0,-50%) scale(0.7)';
+            // Hide all other cards
+            for (let i = 0; i < cards.length; i++) {
+                if (cards[i] !== center && cards[i] !== right && cards[i] !== left) {
+                    cards[i].style.opacity = '0';
+                    cards[i].style.pointerEvents = 'none';
+                    cards[i].style.zIndex = '0';
+                }
+            }
+        }
+
+        // Drag/Swipe
+        let startX = 0, deltaX = 0, dragging = false;
+        const header = document.querySelector('header');
+        const footer = document.querySelector('footer');
+        
+        function isInFixedElement(element) {
+            if (!element) return false;
+            const fixedElements = [header, footer];
+            return fixedElements.some(el => 
+                el.contains(element) || 
+                element === el || 
+                element.closest('header, footer') === el
+            );
+        }
+
+        // Gestionnaire pour le début du glissement
+        function handlePointerDown(e) {
+            // Vérifie si on clique sur un élément fixe ou un de ses enfants
+            let target = e.target;
+            while (target && target !== document.documentElement) {
+                if (isInFixedElement(target)) {
+                    return;
+                }
+                target = target.parentElement;
+            }
+            
+            dragging = true;
+            startX = e.clientX;
+            // Empêche la sélection de texte pendant le drag
+            document.body.style.userSelect = 'none';
+            document.body.style.overflowX = 'hidden';
+            e.stopPropagation();
+            
+            // Si le clic est sur une image, on l'empêche d'être sélectionnée
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+            
+            return false;
+        }
+
+        // Gestionnaire pour le mouvement de la souris/doigt
+        function handlePointerMove(e) {
+            if (!dragging) return;
+            deltaX = e.clientX - startX;
+            // Empêche le défilement de la page
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+
+        // Gestionnaire pour la fin du glissement
+        function handlePointerUp(e) {
+            if (!dragging) return;
+            dragging = false;
+            // Restaure la sélection de texte
+            document.body.style.userSelect = '';
+            document.body.style.overflowX = '';
+            
+            if (Math.abs(deltaX) > 80) {
+                if (deltaX < 0) {
+                    currentIndex = (currentIndex + 1) % cardsData.length;
+                } else {
+                    currentIndex = (currentIndex + cardsData.length - 1) % cardsData.length;
+                }
+                updateCards();
+            }
+            deltaX = 0;
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+
+        // Fonction pour gérer le défilement tactile
+        function handleTouchMove(e) {
+            if (dragging) {
+                // Mise à jour de deltaX pour le suivi du mouvement
+                if (e.type === 'touchmove') {
+                    deltaX = e.touches[0].clientX - startX;
+                } else {
+                    deltaX = e.clientX - startX;
+                }
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        }
+
+        // Ajout des écouteurs d'événements
+        document.addEventListener('pointerdown', handlePointerDown);
+        document.addEventListener('pointermove', handlePointerMove);
+        document.addEventListener('pointerup', handlePointerUp);
+        document.addEventListener('pointercancel', () => {
+            dragging = false;
+            document.body.style.userSelect = '';
+            document.body.style.overflowX = '';
+        });
+
+        // Gestion des événements tactiles
+        document.addEventListener('touchstart', handlePointerDown, { passive: false });
+        document.addEventListener('touchmove', handleTouchMove, { passive: false });
+        document.addEventListener('touchend', handlePointerUp, { passive: false });
+        document.addEventListener('touchcancel', () => {
+            dragging = false;
+            document.body.style.userSelect = '';
+            document.body.style.overflowX = '';
+        });
+        
+        // Désactiver le zoom tactile sur les images du carrousel
+        document.querySelectorAll('.carousel-card img').forEach(img => {
+            img.addEventListener('touchstart', function(e) {
+                if (e.touches.length > 1) { // Si pincement pour zoomer
+                    e.preventDefault();
+                }
+            }, { passive: false });
+        });
+        
+        // S'assurer que les images ne sont pas sélectionnables
+        // Fonction pour simuler le chargement des images
+        function simulateLoading() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const progressCircle = document.querySelector('.loading-circle-progress circle');
+            const percentElement = document.querySelector('.loading-percent');
+            const loadingText = document.querySelector('.loading-text');
+            let progress = 0;
+            const totalImages = document.querySelectorAll('.carousel-card img').length;
+            let loadedImages = 0;
+            
+            // Mettre à jour la progression
+            function updateProgress() {
+                const progressPercent = Math.min(100, Math.round(progress));
+                const offset = 339.292 * (1 - progressPercent / 100);
+                progressCircle.style.strokeDashoffset = offset;
+                percentElement.textContent = `${progressPercent}%`;
+                
+                // Changer le texte à 100%
+                if (progressPercent === 100) {
+                    loadingText.textContent = 'Prêt !';
+                    setTimeout(() => {
+                        loadingOverlay.style.animation = 'fadeOut 0.5s forwards';
+                        // Réactiver le défilement après la fin de l'animation
+                        setTimeout(() => {
+                            loadingOverlay.style.display = 'none';
+                            document.body.classList.remove('loading');
+                        }, 500);
+                    }, 500);
+                }
+            }
+            
+            // Vérifier si les images sont chargées
+            function checkImageLoad() {
+                loadedImages++;
+                progress = (loadedImages / totalImages) * 100;
+                updateProgress();
+            }
+            
+            // Attacher les gestionnaires d'événements de chargement des images
+            document.querySelectorAll('.carousel-card img').forEach(img => {
+                img.style.userSelect = 'none';
+                img.style.webkitUserSelect = 'none';
+                img.style.webkitTouchCallout = 'none';
+                img.draggable = false;
+                
+                if (img.complete) {
+                    checkImageLoad();
+                } else {
+                    img.addEventListener('load', checkImageLoad);
+                    img.addEventListener('error', checkImageLoad); // En cas d'erreur de chargement
+                }
+            });
+            
+            // Animation de progression fluide
+            const interval = setInterval(() => {
+                if (progress < 95) { // On monte jusqu'à 95% en fonction du temps
+                    progress += 0.5;
+                    updateProgress();
+                } else {
+                    clearInterval(interval);
+                    // Si toutes les images sont déjà chargées, on passe directement à 100%
+                    if (loadedImages >= totalImages) {
+                        progress = 100;
+                        updateProgress();
+                    }
+                }
+            }, 20);
+            
+            // Au cas où il n'y aurait pas d'images
+            if (totalImages === 0) {
+                progress = 100;
+                updateProgress();
+            }
+        }
+        
+        // Créer les cartes et démarrer la simulation de chargement
+        createCards();
+        setTimeout(simulateLoading, 100); // Petit délai pour s'assurer que le DOM est mis à jour
+    });
+    </script>
+  </body>
+</html>
+
